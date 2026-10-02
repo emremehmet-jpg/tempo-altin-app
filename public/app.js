@@ -69,7 +69,7 @@
   };
 
   // ---------- Kapı ve bölümler ----------
-  const TEMA_RENGI = { kapi: "#1e2f4d", doviz: "#1b2f52", altin: "#14110c" };
+  const TEMA_RENGI = { kapi: "#16284a", doviz: "#1b2f52", altin: "#14110c" };
   const ILK_EKRAN = { doviz: "kurlar", altin: "fiyatlar" };
   const kapi = $("#kapi");
   let bolum = "kapi";           // "kapi" | "doviz" | "altin"
@@ -330,7 +330,7 @@
         <path class="alan" d="${yol} L${W - P},${H} L${P},${H} Z"/>
         <path class="cizgi" d="${yol}"/>
       </svg>
-      <div class="detay-ust" style="margin-top:6px"><span>48 saatlik değişim</span><b class="degisim ${sinif}">${fark >= 0 ? "+" : "−"}${fmt4.format(Math.abs(fark))} (%${fmtYuzde.format(Math.abs(farkY))})</b></div>`;
+      <div class="detay-ust" style="margin-top:6px"><span>48 saatlik değişim</span><b class="degisim ${sinif}">${fark >= 0 ? "▲ " : "▼ "}${fmt4.format(Math.abs(fark))} (%${fmtYuzde.format(Math.abs(farkY))})</b></div>`;
   }
 
   // ---------- Hesaplama ----------
@@ -381,10 +381,10 @@
     const kur = tlden ? k.sellRate : k.buyRate;
     const sonuc = tlden ? tutar / kur : tutar * kur;
     hesapSonuc.dataset.deger = String(sonuc);
-    hesapSonuc.textContent = `${fmt2.format(sonuc)} ${tlden ? durum.hesapPara : "TL"}`;
+    hesapSonuc.textContent = `${fmt2.format(sonuc)} ${tlden ? durum.hesapPara : "₺"}`;
     hesapBilgi.innerHTML = tlden
-      ? `<b>1 ${k.code} = ${fmt4.format(kur)} TL</b> satış kuru üzerinden. Yüksek tutarlarda tutarınıza özel fiyat için arayın.`
-      : `<b>1 ${k.code} = ${fmt4.format(kur)} TL</b> alış kuru üzerinden. Yüksek tutarlarda tutarınıza özel fiyat için arayın.`;
+      ? `<b>1 ${k.code} = ${fmt4.format(kur)} ₺</b> satış kuru üzerinden. Yüksek tutarlarda tutarınıza özel fiyat için arayın.`
+      : `<b>1 ${k.code} = ${fmt4.format(kur)} ₺</b> alış kuru üzerinden. Yüksek tutarlarda tutarınıza özel fiyat için arayın.`;
   }
 
   // ---------- O gün kur ----------
@@ -439,7 +439,7 @@
   function ogunHesapla() {
     const dovizden = durum.ogunYon === "dovizden";
     const kod = ogunPara.value;
-    $("#ogun-yon-metin").textContent = dovizden ? "Dövizden TL'ye" : "TL'den dövize";
+    $("#ogun-yon-metin").textContent = dovizden ? "Dövizden TL’ye" : "TL’den dövize";
     $("#ogun-tutar-etiket").textContent = dovizden ? `Tutar (${kod})` : "Tutar (TL)";
     if (!ogunVeri) return;
     const v = ogunVeri;
@@ -451,10 +451,10 @@
     const kurGunu = fmtTarihUzun.format(new Date(v.kurGunu + "T12:00:00"));
     ogunSonuc.innerHTML = `
       <span class="etiket">${istenen}</span>
-      <div class="buyuk">${karsilik === null ? "—" : fmt2.format(karsilik)}<small>${dovizden ? "TL" : kod}</small></div>
+      <div class="buyuk">${karsilik === null ? "—" : fmt2.format(karsilik)}<small>${dovizden ? "₺" : kod}</small></div>
       ${v.yedegeDusuldu ? `<p class="uyari">Bu tarihte kur ilan edilmemiş (hafta sonu/tatil); ${kurGunu} kuru kullanıldı.</p>` : ""}
-      <div class="satir"><span>TCMB alış ${birim > 1 ? `(${birim} ${kod})` : ""}</span><b>${fmt4.format(v.alis)} TL</b></div>
-      <div class="satir"><span>TCMB satış ${birim > 1 ? `(${birim} ${kod})` : ""}</span><b>${fmt4.format(v.satis)} TL</b></div>`;
+      <div class="satir"><span>TCMB alış ${birim > 1 ? `(${birim} ${kod})` : ""}</span><b>${fmt4.format(v.alis)} ₺</b></div>
+      <div class="satir"><span>TCMB satış ${birim > 1 ? `(${birim} ${kod})` : ""}</span><b>${fmt4.format(v.satis)} ₺</b></div>`;
     ogunBilgi.textContent = "Kaynak: TCMB gösterge kurları. Hesaplama satış kuru üzerinden yapılır.";
   }
 
@@ -515,11 +515,11 @@
     }
     const kur = al ? k.sellRate : k.buyRate;
     const toplam = tutar * kur;
-    $("#alsat-kur").textContent = `${fmt4.format(kur)} TL`;
-    $("#alsat-toplam").textContent = `${fmt2.format(toplam)} TL`;
+    $("#alsat-kur").textContent = `${fmt4.format(kur)} ₺`;
+    $("#alsat-toplam").textContent = `${fmt2.format(toplam)} ₺`;
     bilgi.innerHTML = al
-      ? `<b>${fmt2.format(tutar)} ${kod}</b> için yaklaşık <b>${fmt2.format(toplam)} TL</b>. Yüksek tutarlarda tutarınıza özel fiyat için arayın.`
-      : `<b>${fmt2.format(tutar)} ${kod}</b> karşılığında yaklaşık <b>${fmt2.format(toplam)} TL</b>. Yüksek tutarlarda tutarınıza özel fiyat için arayın.`;
+      ? `<b>${fmt2.format(tutar)} ${kod}</b> için yaklaşık <b>${fmt2.format(toplam)} ₺</b>. Yüksek tutarlarda tutarınıza özel fiyat için arayın.`
+      : `<b>${fmt2.format(tutar)} ${kod}</b> karşılığında yaklaşık <b>${fmt2.format(toplam)} ₺</b>. Yüksek tutarlarda tutarınıza özel fiyat için arayın.`;
   }
 
   // ---------- İletişim: şu an açık mı? ----------

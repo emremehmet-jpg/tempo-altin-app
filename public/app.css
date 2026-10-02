@@ -1,6 +1,10 @@
 /* Tempo Döviz & Altın uygulaması — görünüm.
    İki bölüm, iki marka dili:
-     Döviz  → tempodoviz.com: beyaz zemin, lacivert #1b2f52, Anek Latin, son iki hane mavi
+     Döviz  → Tempo Kurumsal Kimlik Kılavuzu (Sürüm 1.0, Ağustos 2026):
+              Parliament #1B2F52, antrasit #343A40 başlık, #454B55 gövde,
+              nötrler F5F6F8/DCDFE4/787E88/12151A, ekran vurgusu #7DA5E3 (yalnız pip,
+              bağlantı, aktif durum), yükseliş/düşüş #0B7A4B/#C2261F (önce ▲▼, sonra renk).
+              Anek Latin; büyük rakam Light 300, pip Medium 500, başlık wdth 85.
      Altın  → tempoaltin.com: sıcak siyah #14110c, altın #d5aa45, Instrument Serif başlık, kuruş altın
    Renk değişkenleri sitelerin kendi CSS'inden alındı; hangi bölüm açıksa
    body[data-bolum] o paleti verir, aynı bileşenler (kart, liste, sekme) iki
@@ -13,7 +17,7 @@
   --border: #dcdfe4;
   --text: #343a40;
   --text-muted: #454b55;
-  --text-dim: #787e8b;
+  --text-dim: #787e88;
   --primary: #1b2f52;
   --primary-hover: #0d192e;
   --on-primary: #ffffff;
@@ -145,13 +149,14 @@ body {
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;   /* kılavuz: tüm listelerde eşit genişlikli rakam */
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior-y: contain;
   min-height: 100dvh;
   transition: background-color .3s ease;
 }
 /* Kapı açıkken gövde kapının rengini alır (kenar boşluklarında beyaz sızmasın) */
-body[data-bolum="kapi"] { background: #2f4a72; }
+body[data-bolum="kapi"] { background: #16284a; }
 button, input, select, output { font: inherit; color: inherit; }
 button { cursor: pointer; }
 a { color: var(--primary); }
@@ -224,13 +229,13 @@ a { color: var(--primary); }
   color: inherit; border-radius: 999px; padding: 6px 12px 6px 10px;
   font-size: 13px; font-weight: 500; white-space: nowrap;
 }
-.durum-nokta { width: 8px; height: 8px; border-radius: 50%; background: #2db070; box-shadow: 0 0 0 3px rgba(45,176,112,.25); }
-.durum.hata .durum-nokta { background: #e95c54; box-shadow: 0 0 0 3px rgba(233,92,84,.25); }
+.durum-nokta { width: 8px; height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 25%, transparent); }
+.durum.hata .durum-nokta { background: var(--danger); box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 25%, transparent); }
 .durum.bekliyor .durum-nokta { background: #e0ad4a; box-shadow: 0 0 0 3px rgba(224,173,74,.25); }
 
 /* ---------- Ekranlar ---------- */
 .ana { padding: 16px 16px calc(72px + env(safe-area-inset-bottom)); max-width: 640px; margin: 0 auto; }
-.ekran-baslik { font-size: 24px; font-weight: 700; margin: 4px 0 4px; letter-spacing: -.01em; }
+.ekran-baslik { font-size: 24px; font-weight: 700; margin: 4px 0 4px; letter-spacing: -.01em; font-stretch: 85%; }   /* kılavuz: başlık wdth 85 */
 body[data-bolum="altin"] .ekran-baslik { font-family: var(--font-baslik); font-weight: 400; font-size: 32px; letter-spacing: 0; }
 .ekran-alt { margin: 0 0 14px; color: var(--text-dim); font-size: 14px; }
 .bolum-baslik { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-dim); margin: 24px 0 8px; }
@@ -286,6 +291,13 @@ body[data-bolum="altin"] .ekran-baslik { font-family: var(--font-baslik); font-w
 .fiyat small { display: block; font-size: 11px; font-weight: 500; color: var(--text-dim); }
 .fiyat .kurus { font-weight: 500; }
 .fiyat .pip { color: var(--accent); }                           /* döviz: son iki hane mavi */
+/* Döviz rakam disiplini: rakam düz, pip Medium 500 + ekran vurgusu */
+body[data-bolum="doviz"] .fiyat, body[data-bolum="doviz"] .fiyat .kurus { font-weight: 400; }
+body[data-bolum="doviz"] .fiyat .pip { font-weight: 500; }
+/* Büyük rakam (sonuç kutuları): Light 300 */
+body[data-bolum="doviz"] .hesap .sonuc output,
+body[data-bolum="doviz"] .alsat-toplam output,
+body[data-bolum="doviz"] .ogun-sonuc .buyuk { font-weight: 300; }
 body[data-bolum="altin"] .fiyat .pip { color: #d5aa45; font-weight: 700; }  /* altın: kuruş altın */
 body[data-bolum="altin"] .fiyat { font-size: 17px; }
 .degisim { font-size: 11.5px; font-weight: 600; }
@@ -402,12 +414,12 @@ body[data-bolum="altin"] .fiyat { font-size: 17px; }
 @media (prefers-reduced-motion: reduce) { .ekran { animation: none; } }
 
 /* ======================================================================
-   KAPI — açılış: degrade zemin, Emre'nin logo görseli, iki kanat, dışta kavisli yazılar
+   KAPI — açılış: O desenli lacivert zemin, Emre'nin logo görseli, iki kanat, dışta kavisli yazılar
    ====================================================================== */
 .kapi {
   position: fixed; inset: 0; z-index: 30; overflow: hidden;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  background: #2f4a72 url(/kapi/zemin.jpg) left center / cover no-repeat;  /* sol: alttaki TEMPO logosu kesilmesin */
+  background: #16284a url(/kapi/zemin.jpg) left bottom / cover no-repeat;  /* 02-monogram-story (O desenli lacivert); sol alt: TEMPO DÖVİZ logosu kesilmesin */
   color: #fff; -webkit-user-select: none; user-select: none;
   padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
   transition: opacity .35s ease;
@@ -436,8 +448,8 @@ body[data-bolum="altin"] .fiyat { font-size: 17px; }
   border: 0; padding: 0; background: center / 100% 100% no-repeat; pointer-events: none;
   transform-origin: var(--ox) var(--oy); -webkit-tap-highlight-color: transparent;
 }
-.kanat-doviz { background-image: url(/kapi/kanat-doviz.png); --ox: 37.4%; --oy: 32.5%; --yx: -.584; --yy: -.812; }
-.kanat-altin { background-image: url(/kapi/kanat-altin.png); --ox: 62.5%; --oy: 67.4%; --yx: .583;  --yy: .813; }
+.kanat-doviz { background-image: url(/kapi/kanat-doviz.png); --ox: 37.2%; --oy: 31.7%; --yx: -.573; --yy: -.82; }
+.kanat-altin { background-image: url(/kapi/kanat-altin.png); --ox: 62.7%; --oy: 68.2%; --yx: .573;  --yy: .82; }
 .kapi-donen { cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .kanat:focus-visible { outline: 2px solid #fff; outline-offset: -20%; border-radius: 50%; }
 
@@ -467,7 +479,7 @@ body[data-bolum="altin"] .fiyat { font-size: 17px; }
 .kapi.secildi-doviz .kapi-yazi, .kapi.secildi-altin .kapi-yazi { opacity: 0; transition: opacity .3s; }
 .kapi.secildi-doviz .kapi-ipucu, .kapi.secildi-altin .kapi-ipucu { opacity: 0; }
 
-.kapi-ipucu { position: absolute; left: 0; right: 0; bottom: calc(env(safe-area-inset-bottom) + 96px); text-align: center; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; opacity: .55; margin: 0; transition: opacity .3s; text-shadow: 0 1px 6px rgba(0,0,0,.4); }
+.kapi-ipucu { position: absolute; left: 0; right: 0; bottom: calc(env(safe-area-inset-bottom) + 15vh); text-align: center;   /* zemindeki logo alttan %6–12'de; ipucu onun üstünde */ font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; opacity: .55; margin: 0; transition: opacity .3s; text-shadow: 0 1px 6px rgba(0,0,0,.4); }
 
 /* Bölümden kapıya dönüş */
 .kapi.geliyor { animation: kapiGel .3s ease-out; }

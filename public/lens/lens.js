@@ -55,6 +55,9 @@
 
   // ---------- Parite (üç seçici grubu birbirine bağlı) ----------
   const PARA_AD = { TRY: "TL", USD: "USD", EUR: "EUR", GBP: "GBP" };
+  // Tutarın yanında: kılavuz gereği TL yerine ₺, sayıdan sonra ince boşlukla
+  const PARA_SIMGE = { TRY: "₺" };
+  const NB = "\u202f";
   function pariteYaz() {
     const p = `${durum.kaynak}-${durum.hedef}`;
     $$("[data-parite]").forEach((b) => b.setAttribute("aria-checked", b.dataset.parite === p));
@@ -530,15 +533,15 @@
   // Tempo SATIŞ kuru: müşteri gözüyle "bu fiyatı ödemek için kaç TL gerekir"
   function cevir(kaynak, tutar, hedef) {
     if (kaynak === hedef) return null;
-    const d = kurBul(kaynak, hedef); if (d) return { deger: tutar * d.sellRate, kur: `1 ${kaynak} = ${T.fmt4.format(d.sellRate)} ${PARA_AD[hedef] || hedef}` };
-    const t = kurBul(hedef, kaynak); if (t) return { deger: tutar / t.sellRate, kur: `1 ${hedef} = ${T.fmt4.format(t.sellRate)} ${PARA_AD[kaynak] || kaynak}` };
+    const d = kurBul(kaynak, hedef); if (d) return { deger: tutar * d.sellRate, kur: `1 ${kaynak} = ${T.fmt4.format(d.sellRate)}${NB}${PARA_SIMGE[hedef] || hedef}` };
+    const t = kurBul(hedef, kaynak); if (t) return { deger: tutar / t.sellRate, kur: `1 ${hedef} = ${T.fmt4.format(t.sellRate)}${NB}${PARA_SIMGE[kaynak] || kaynak}` };
     const a = kurBul(kaynak, "TRY"), b = kurBul(hedef, "TRY");
     if (a && b) return { deger: (tutar * a.sellRate) / b.sellRate, kur: `${kaynak}/TRY ve ${hedef}/TRY üzerinden` };
     return null;
   }
   function tutarYaz(n, para) {
     const s = para === "TRY" && n >= 100 ? new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 0 }).format(n) : T.fmt2.format(n);
-    return `${s} ${PARA_AD[para] || para}`;
+    return `${s}${NB}${PARA_SIMGE[para] || para}`;
   }
 
   // ---------- Dondurulmuş sonucu çiz ----------
@@ -560,7 +563,7 @@
       const c = cevir(durum.kaynak, b.tutar, durum.hedef);
       if (!c) continue;
       kurMetin = c.kur;
-      const kaynakMetin = `${T.fmt2.format(b.tutar).replace(/,00$/, "")} ${PARA_AD[durum.kaynak]}`;
+      const kaynakMetin = `${T.fmt2.format(b.tutar).replace(/,00$/, "")}${NB}${PARA_SIMGE[durum.kaynak] || durum.kaynak}`;
       const sagda = b.kutu.x1 / w < 0.72;
       const rozet = document.createElement("span");
       rozet.className = "lens-etiket" + (sagda ? "" : " sol");

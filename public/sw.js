@@ -2,7 +2,7 @@
 // Telefondan 192.168.x.x ile bakarken devreye girmez; bu normaldir.
 // Görevi: uygulama kabuğunu önbelleğe alıp çevrimdışıyken de açılmasını sağlamak.
 // Kur verisi (/api/) hiçbir zaman önbelleğe alınmaz — her zaman ağdan gelir.
-const SURUM = "tempo-v8";
+const SURUM = "tempo-v11";
 const KABUK = ["/", "/index.html", "/app.css", "/app.js", "/altin.js", "/manifest.webmanifest",
   "/ikon/ikon-192.png", "/ikon/apple-touch-icon.png", "/ikon/favicon.png",
   "/marka/tempo-yazi.png", "/marka/tempo-o.png", "/marka/tempo-bant.png", "/marka/altin-bant.png"];

@@ -238,6 +238,16 @@ marka/                logo dosyaları: logo-yatay (döviz), logo-altin-yatay, o-
 - **Alarm / bülten / müşteri kabul** v1'de siteye köprü; sitede zaten
   çalışıyor, kopyalamak yerine bağlandı.
 - Marka: lacivert #1B2F52, vurgu #7DA5E3, yazı tipi Anek Latin (siteyle aynı).
+- **Döviz bölümü kurumsal kimliğe bağlı (Emre, 2 Eki 2026):** kaynak
+  `~/Desktop/tempokurumsalkimlik/TEMPO-kurumsal-kimlik.pdf` (Sürüm 1.0). Renk:
+  Parliament #1B2F52, antrasit #343A40 başlık, #454B55 gövde, nötr F5F6F8 /
+  DCDFE4 / 787E88 / 12151A, #7DA5E3 yalnız ekranda vurgu (pip, bağlantı, aktif);
+  yükseliş/düşüş #0B7A4B/#C2261F, önce ▲▼ sonra renk. Rakam: daima 4 hane,
+  `%2,45`, büyük rakam Light 300, pip Medium 500, eşit genişlik (tabular-nums
+  gövdede). Tutar `1.250,00 ₺` (TL değil, ince bölünmez boşluk U+202F);
+  kur çifti/etiketlerde "TL" kalır. Başlık Anek Latin wdth 85. Türkçe kesme ’
+  ve “tırnak”. Adres kılavuzdaki gibi: Mahir İz Cad. No: 18-A1, Altunizade —
+  Üsküdar / İstanbul. Saira yalnız logoda (uygulamada yok).
 - **İki marka, tek kabuk (Emre, 19 Eyl):** Döviz açık/lacivert, Altın koyu/altın;
   kullanıcı bölüm değiştirince marka değişir. Ortak: Anek Latin, "O" logosu,
   kart/liste bileşenleri. Altın başlıkları Instrument Serif (Google Fonts).
@@ -275,6 +285,24 @@ marka/                logo dosyaları: logo-yatay (döviz), logo-altin-yatay, o-
 6. İsteğe bağlı: aşağı çekince yenileme, alarm/bildirim.
 
 ## 8. OTURUM GÜNLÜĞÜ
+
+- **2 Eki 2026 (2)** — Git deposu açıldı (github.com/emremehmet-jpg/tempo-doviz-app;
+  sertifika anahtarları .gitignore'da). Döviz bölümü kurumsal kimlik kılavuzuna
+  uyduruldu (bkz. Kararlar): ₺ simgesi, rakam ağırlıkları, başlık wdth 85,
+  durum noktaları kimlik renklerinde, 48 sa değişimde ▲▼, kesme/tırnak, adres.
+  Font Anek Latin değişken (wdth 75–125, wght 100–800). sw SURUM tempo-v9.
+  Kapı zemini değişti (Emre): `marka/02-monogram-story.png` (1080×1350, O desenli
+  lacivert, sol altta TEMPO DÖVİZ) → `public/kapi/zemin.jpg`, `left bottom / cover`;
+  "Kanada dokunun" ipucu logonun üstüne alındı (15vh); kapı tema rengi #16284a.
+  sw SURUM tempo-v10. (Eski lacivert→altın degrade artık kullanılmıyor.)
+  Kapı logosu değişti (Emre): yeni altın O (`marka/o-altin-lacivert-1024.png`,
+  lacivert zeminli). `arac/o-zemin-ayir.py` zemini ayırıp R 281→291 ölçekler →
+  `public/kapi/logo.png`; `arac/kanat-ayir.py` kanatları ayırır ve **Döviz kanadını
+  metalik Parliament'a boyar** (altının parlaklık bantları korunur, renk lacivert
+  rampasından; ana ton #1B2F52). Altın kanadı olduğu gibi. Canlılık filtresi
+  kaldırıldı (yeni altın zaten parlak). Geometri eskisiyle aynı (boşluklar,
+  yazı yarıçapı, dokunma açısı değişmedi); --ox/--oy güncellendi. sw tempo-v11.
+  Python: `python3 -m venv venv && venv/bin/pip install pillow numpy scipy`.
 
 - **2 Eki 2026** — Kapı: logo netleştirildi/canlandırıldı (kanat-ayir.py, filtre
   görsele işlendi), kanatlar ayrı görsel, yeni "kendine çek" hareketi (iki kanat

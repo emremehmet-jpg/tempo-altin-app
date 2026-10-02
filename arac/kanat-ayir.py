@@ -2,9 +2,11 @@
 #   public/kapi/kanat-doviz.png (sol-üst) ve public/kapi/kanat-altin.png (sağ-alt).
 # Kanatlar pikselde zaten iki ayrı parça → bağlı bileşen etiketiyle kesin ayrılır
 # (eski clip-path zikzağı bir kanadın ucunu öbür tarafta bırakıyordu).
-# Netlik için: kenardaki açık zemin sızıntısı temizlenir, 2 kat büyütülüp
-# keskinleştirilir, canlılık (saturate 1.25, contrast 1.12) ve gölge görsele işlenir
-# — iPhone'da filtreli + dönen katman düşük çözünürlükte çiziliyordu.
+# Netlik için: kenardaki zemin sızıntısı temizlenir, 2 kat büyütülüp
+# keskinleştirilir, gölge görsele işlenir — iPhone'da filtreli + dönen katman
+# düşük çözünürlükte çiziliyordu.
+# 2 Eki 2026'dan beri kaynak altın O (arac/o-zemin-ayir.py üretir); Döviz kanadı
+# aynı metalik ışıkla kurumsal Parliament (#1B2F52) tonuna boyanır (PARLIAMENT).
 # Kullanım: python3 arac/kanat-ayir.py   (pillow, numpy, scipy gerekir)
 import json
 import numpy as np
@@ -24,13 +26,17 @@ ic = al > 0.99
 _, (iy, ix) = nd.distance_transform_edt(~ic, return_indices=True)
 rgb = rgb[iy, ix]
 
-# 2) Canlılık — CSS saturate(1.25) contrast(1.12) ile aynı formül
-s = 1.25
-M = np.array([[.213 + .787 * s, .715 - .715 * s, .072 - .072 * s],
-              [.213 - .213 * s, .715 + .285 * s, .072 - .072 * s],
-              [.213 - .213 * s, .715 - .715 * s, .072 + .928 * s]])
-rgb = np.clip(rgb @ M.T, 0, 1)
-rgb = np.clip((rgb - .5) * 1.12 + .5, 0, 1)
+# 2) Döviz kanadı için metalik Parliament: altının parlaklığı (ışık/gölge
+#    bantları) korunur, renk lacivert rampasından okunur. Rampanın ortası
+#    Parliament #1B2F52; parlak bantlar çelik mavisine, en parlak ışık beyaza gider.
+PARLIAMENT = [(0.00, (0x0a, 0x13, 0x26)), (0.45, (0x1b, 0x2f, 0x52)), (0.72, (0x2c, 0x47, 0x78)),
+              (0.88, (0x5c, 0x7c, 0xb2)), (0.97, (0xb4, 0xc6, 0xe4)), (1.00, (0xe8, 0xef, 0xf9))]
+def parliament(rgb, maske):
+    Y = rgb @ np.array([.2126, .7152, .0722])
+    lo, hi = np.percentile(Y[maske], [1, 99.5])
+    t = np.clip((Y - lo) / (hi - lo), 0, 1)
+    xs = [d for d, _ in PARLIAMENT]
+    return np.dstack([np.interp(t, xs, [c[i] / 255 for _, c in PARLIAMENT]) for i in range(3)])
 
 # 3) Kanatları ayır: iki büyük parça; kırıntılar en yakın parçaya
 lab, n = nd.label(al > 0.04)
@@ -50,8 +56,9 @@ for etiket in buyuk:
     gx, gy = np.average(xx, weights=agirlik), np.average(yy, weights=agirlik)
     ad = "doviz" if gy < cy else "altin"     # sol-üst = Döviz
     a = np.where(m, al, 0)
+    kanat_rgb = parliament(rgb, m & (al > .5)) if ad == "doviz" else rgb
 
-    renk = Image.fromarray((rgb[a0:a1, a0:a1] * 255).round().astype(np.uint8))
+    renk = Image.fromarray((kanat_rgb[a0:a1, a0:a1] * 255).round().astype(np.uint8))
     renk = renk.resize((W, W), Image.LANCZOS).filter(ImageFilter.UnsharpMask(radius=2, percent=45, threshold=2))
     alfa = Image.fromarray((a[a0:a1, a0:a1] * 255).round().astype(np.uint8)).resize((W, W), Image.LANCZOS)
     # kenarı sıkılaştır (yumuşak ama keskin geçiş)
