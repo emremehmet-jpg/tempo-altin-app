@@ -2,16 +2,16 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8">
-  <title>Tempo</title>
+  <title>Tempo Altın</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-  <meta name="description" content="Tempo Döviz güncel döviz kurları ve Tempo Altın canlı altın fiyatları, hesaplama, geçmiş TCMB kurları">
+  <meta name="description" content="Tempo Altın canlı altın, gümüş ve platin fiyatları; gram ve ziynet hesaplama">
 
   <!-- Ana ekrana eklenince uygulama gibi açılsın (iPhone) -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Tempo">
-  <meta name="theme-color" content="#1b2f52" id="tema-rengi">
+  <meta name="apple-mobile-web-app-title" content="Tempo Altın">
+  <meta name="theme-color" content="#14110c" id="tema-rengi">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="apple-touch-icon" href="/ikon/apple-touch-icon.png">
   <link rel="icon" type="image/png" href="/ikon/favicon.png">
@@ -20,372 +20,37 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wdth,wght@75..125,100..800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/app.css">
-  <link rel="stylesheet" href="/lens/lens.css">
 </head>
-<body>
+<body data-bolum="altin">
 
-<!-- ============ KAPI: Döviz mi, Altın mı? ============
-     Uygulama bu ekranla açılır. Arka plan Emre'nin verdiği O desenli lacivert (marka/02-monogram-story.png)
-     (kapi/zemin.jpg). Ortada Emre'nin logo görseli, iki ayrı kanat görseli olarak
-     (kapi/kanat-doviz.png, kanat-altin.png; arac/kanat-ayir.py kapi/logo.png'den; logo.png = marka/o-altin-lacivert-1024.png, arac/o-zemin-ayir.py; Döviz kanadı metalik Parliament
-     üretir): sol-üst kanat = Döviz, sağ-alt = Altın.
-     Açılışta bir tur döner; yazılar çemberin DIŞ kenarında kavisli.
-     Dokunulan kanat ortasından tutulup kendine çekilir, ardından bölüm belirir. -->
-<section class="kapi" id="kapi" aria-label="Bölüm seçimi">
-  <div class="kapi-logo" id="kapi-logo">
-    <div class="kapi-donen" id="kapi-donen">
-      <button class="kanat kanat-doviz" type="button" data-bolum="doviz" aria-label="Döviz bölümüne geç"></button>
-      <button class="kanat kanat-altin" type="button" data-bolum="altin" aria-label="Altın bölümüne geç"></button>
-    </div>
-    <svg class="kapi-yazilar" viewBox="0 0 1024 1024" aria-hidden="true">
-      <defs>
-        <path id="k-yol-doviz" d="M204.2 457.8 A312 312 0 0 1 565.7 204.7"/>
-        <path id="k-yol-altin" d="M452.1 848.8 A342 342 0 0 0 848.3 571.4"/>
-      </defs>
-      <text class="kapi-yazi kapi-yazi-doviz"><textPath href="#k-yol-doviz" startOffset="50%" text-anchor="middle">DÖVİZ</textPath></text>
-      <text class="kapi-yazi kapi-yazi-altin"><textPath href="#k-yol-altin" startOffset="50%" text-anchor="middle">ALTIN</textPath></text>
-    </svg>
+<!-- ============ GİRİŞ ============
+     Uygulama TEMPO ALTIN | 1988 logosuyla açılır (Emre'nin verdiği logo,
+     marka/logo-altin-yatay-2400.png; parçaları public/marka/altin-*.png).
+     Logo belirir, O bir tur dönüp bir kez zıplar, ekran söner. Dokununca hemen geçer. -->
+<section class="giris" id="giris" aria-label="Tempo Altın">
+  <div class="giris-logo logo-tempo logo-altin" role="img" aria-label="TEMPO ALTIN | 1988">
+    <span class="logo-yazi"></span>
+    <span class="logo-o"></span>
+    <span class="giris-bant-zemin"></span>
+    <span class="logo-bant"></span>
   </div>
-  <p class="kapi-ipucu">Kanada dokunun</p>
 </section>
 
-<!-- ============ DÖVİZ BÖLÜMÜ ============ -->
-<div class="bolum" id="bolum-doviz" data-bolum="doviz" hidden>
-
-<!-- Eski (http) ana ekran ikonundan açılınca: kamera bu adreste çalışmaz, https adresine yönlendir -->
-<div class="guvenli-uyari" id="guvenli-uyari" hidden>
-  <span>Bu adres eski; kamera için güvenli adrese geçin ve ana ekran ikonunu oradan yeniden ekleyin.</span>
-  <a id="guvenli-adres" href="#" target="_blank" rel="noopener">Güvenli adresi aç</a>
-</div>
-
-<header class="ust ust-doviz">
-  <!-- TEMPO DÖVİZ | 1988 logosu üç maske parçası (marka/): O ayrı, 3 sn'de bir dönüp zıplar -->
-  <button class="marka logo-doviz" type="button" data-kapi title="Bölüm seç" aria-label="Tempo Döviz — bölüm seç">
-    <span class="logo-yazi" aria-hidden="true"></span>
-    <span class="logo-o" aria-hidden="true"></span>
-    <span class="logo-bant" aria-hidden="true"></span>
-  </button>
-  <div class="ust-sag">
-    <button class="tema" id="tema" type="button" title="Aydınlat / karart" aria-label="Aydınlat / karart">
-      <svg class="tema-gunes" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-      <svg class="tema-ay" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-    </button>
-    <button class="durum" id="durum" type="button" title="Yenile">
-      <span class="durum-nokta"></span>
-      <span id="durum-metin">Bağlanıyor…</span>
-    </button>
-  </div>
-</header>
-<!-- Sitedeki kayan kur bandı -->
-<div class="bant" id="bant" aria-hidden="true"><div class="bant-ic" id="bant-ic"></div></div>
-
-<main class="ana" id="ana">
-
-  <!-- ============ KURLAR ============ -->
-  <section class="ekran" id="ekran-kurlar" data-ekran="kurlar">
-    <div class="segment" role="tablist" aria-label="Kur grubu">
-      <button role="tab" aria-selected="true" data-grup="tl">TL Kurları</button>
-      <button role="tab" aria-selected="false" data-grup="capraz">Çapraz</button>
-    </div>
-    <div class="liste-baslik">
-      <span>Parite</span><span>Alış</span><span>Satış</span>
-    </div>
-    <ul class="kur-liste" id="kur-liste" aria-live="polite"></ul>
-
-    <button class="lens-kart" type="button" data-hedef="lens">
-      <span class="lens-kart-ikon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3.2"/><path d="M9 8.5h6l-.8-1.5h-4.4z"/></svg>
-      </span>
-      <span class="lens-kart-metin"><b>Tempo Lens</b><small>Menüdeki fiyatları kamerayla anında TL’ye çevirin</small></span>
-      <span class="lens-kart-ok" aria-hidden="true">›</span>
-    </button>
-
-    <p class="dipnot">Kurlar bilgilendirme amaçlıdır; işlem anındaki fiyat farklı olabilir. Yüksek tutarlarda tutarınıza özel fiyat için arayın.</p>
-  </section>
-
-  <!-- ============ HESAPLA ============ -->
-  <section class="ekran" id="ekran-hesapla" data-ekran="hesapla" hidden>
-    <h1 class="ekran-baslik">Döviz Hesaplama</h1>
-
-    <div class="kart hesap">
-      <label class="alan">
-        <span class="alan-etiket" id="hesap-ust-etiket">Tutar (TL)</span>
-        <input id="hesap-tutar" type="text" inputmode="decimal" autocomplete="off" value="10.000">
-      </label>
-
-      <button class="cevir" id="hesap-cevir" type="button" aria-label="Yönü değiştir">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3"/></svg>
-      </button>
-
-      <div class="alan sonuc">
-        <span class="alan-etiket" id="hesap-alt-etiket">Karşılığı (USD)</span>
-        <output id="hesap-sonuc">—</output>
-      </div>
-    </div>
-
-    <div class="secici" id="hesap-para" role="radiogroup" aria-label="Para birimi"></div>
-
-    <p class="bilgi" id="hesap-bilgi"></p>
-  </section>
-
-  <!-- ============ AL / SAT ============
-       Uygulama işlem yapmaz: müşteri tutarı görür, talebi WhatsApp/telefonla iletir,
-       kur teyidi ve ödeme (havale/EFT) büroyla tamamlanır. -->
-  <section class="ekran" id="ekran-alsat" data-ekran="alsat" hidden>
-    <h1 class="ekran-baslik">Döviz Al / Sat</h1>
-    <p class="ekran-alt">Tutarı yazın, karşılığını görün; kur telefonda teyit edilir.</p>
-
-    <div class="segment" role="tablist" aria-label="İşlem yönü">
-      <button role="tab" aria-selected="true" data-yon="al">Döviz Alıyorum</button>
-      <button role="tab" aria-selected="false" data-yon="sat">Döviz Satıyorum</button>
-    </div>
-
-    <div class="secici alsat-para" id="alsat-para" role="radiogroup" aria-label="Para birimi"></div>
-
-    <div class="kart alsat-kart">
-      <label class="alan">
-        <span class="alan-etiket" id="alsat-tutar-etiket">Tutar (USD)</span>
-        <input id="alsat-tutar" type="text" inputmode="decimal" autocomplete="off" value="1.000">
-      </label>
-      <div class="alsat-ozet" id="alsat-ozet">
-        <div class="alsat-satir"><span id="alsat-kur-etiket">Satış kuru</span><b id="alsat-kur">—</b></div>
-        <div class="alsat-toplam"><span id="alsat-toplam-etiket">Ödeyeceğiniz</span><output id="alsat-toplam">—</output></div>
-      </div>
-    </div>
-
-    <div class="alsat-eylemler">
-      <a class="alsat-ara" href="tel:+902166511295">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
-        Arayıp teyit edin
-      </a>
-    </div>
-
-    <p class="bilgi" id="alsat-bilgi"></p>
-
-    <h2 class="bolum-baslik">Nasıl ilerler?</h2>
-    <ol class="adimlar">
-      <li><b>Arayın.</b> Tutarı bildirin; o anki kur teyit edilir, yüksek tutarlarda size özel fiyat çalışılır.</li>
-      <li><b>Ödemeyi yapın.</b> Alımda TL karşılığını havale/EFT ile şirket hesabımıza gönderin; satışta dövizi şubeye getirin.</li>
-      <li><b>Teslim alın.</b> Altunizade’deki şubemizden kimliğinizle teslim alın.</li>
-    </ol>
-    <p class="dipnot">Gösterilen tutar bilgilendirme amaçlıdır; kesin kur işlem anında teyit edilir. Döviz alım satımı kimlik tespitine tabidir.</p>
-  </section>
-
-  <!-- ============ TEMPO LENS ============ -->
-  <section class="ekran" id="ekran-lens" data-ekran="lens" hidden>
-    <div class="lens-giris" id="lens-giris">
-      <h1 class="ekran-baslik lens-baslik">Tempo Lens</h1>
-      <div class="lens-vizor" aria-hidden="true">
-        <svg viewBox="0 0 180 180" width="180" height="180" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke-width="3" d="M40 4H16a12 12 0 0 0-12 12v24M140 4h24a12 12 0 0 1 12 12v24M4 140v24a12 12 0 0 0 12 12h24M176 140v24a12 12 0 0 1-12 12h-24"/>
-          <g stroke-width="2.4" transform="translate(54 54)"><rect x="3" y="14" width="66" height="48" rx="9"/><circle cx="36" cy="38" r="13"/><path d="M22 14 28 5h16l6 9"/></g>
-        </svg>
-      </div>
-      <p class="lens-aciklama">Pariteyi seçin, kamerayı menüye ya da etikete tutun; gördüğü <b>her sayının</b> yanında anlık Tempo kuruyla karşılığı belirir.</p>
-
-      <div class="lens-hedef" role="radiogroup" aria-label="Parite">
-        <span class="alan-etiket">Parite</span>
-        <div class="secici" id="lens-parite">
-          <button type="button" role="radio" data-parite="EUR-TRY">EUR → TL</button>
-          <button type="button" role="radio" data-parite="USD-TRY">USD → TL</button>
-          <button type="button" role="radio" data-parite="EUR-USD">EUR → USD</button>
-          <button type="button" role="radio" data-parite="USD-EUR">USD → EUR</button>
-          <button type="button" role="radio" data-parite="TRY-EUR">TL → EUR</button>
-          <button type="button" role="radio" data-parite="TRY-USD">TL → USD</button>
-        </div>
-      </div>
-
-      <button class="lens-ac" id="lens-ac" type="button">Kamerayı Aç</button>
-      <button class="lens-galeri" id="lens-galeri" type="button">Galeriden fotoğraf seç</button>
-      <input id="lens-dosya" type="file" accept="image/*" hidden>
-      <input id="lens-dosya-kamera" type="file" accept="image/*" capture="environment" hidden>
-      <p class="lens-not" id="lens-not"></p>
-    </div>
-
-    <div class="lens-sonuc" id="lens-sonuc" hidden>
-      <div class="lens-sahne" id="lens-sahne">
-        <img id="lens-resim" alt="Taranan fotoğraf">
-        <div id="lens-etiketler"></div>
-        <div class="lens-yukleniyor" id="lens-yukleniyor"><div class="lens-cubuk"><span id="lens-cubuk-ic"></span></div><span id="lens-yukleniyor-metin">Hazırlanıyor…</span></div>
-      </div>
-      <div class="kart lens-bilgi">
-        <div class="lens-bilgi-ust">
-          <span class="lens-bilgi-ikon">i</span>
-          <div><b id="lens-bilgi-baslik">Tempo satış kuru ile hesaplandı</b><small id="lens-bilgi-alt"></small></div>
-        </div>
-        <div class="secici lens-hedef-kucuk" id="lens-parite-sonuc">
-          <button type="button" role="radio" data-parite="EUR-TRY">EUR → TL</button>
-          <button type="button" role="radio" data-parite="USD-TRY">USD → TL</button>
-          <button type="button" role="radio" data-parite="EUR-USD">EUR → USD</button>
-          <button type="button" role="radio" data-parite="USD-EUR">USD → EUR</button>
-          <button type="button" role="radio" data-parite="TRY-EUR">TL → EUR</button>
-          <button type="button" role="radio" data-parite="TRY-USD">TL → USD</button>
-        </div>
-        <ul class="lens-liste" id="lens-liste"></ul>
-        <button class="lens-ac" id="lens-tekrar" type="button">Yeniden tara</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Kamera (tam ekran, canlı tarama) -->
-  <div class="kamera" id="kamera" hidden>
-    <div class="kamera-ust">
-      <button class="kamera-yuvarlak" id="kamera-kapat" type="button" aria-label="Kapat">✕</button>
-      <div class="kamera-kur">
-        <b id="kamera-parite">EUR → TL</b>
-        <small id="kamera-kur-metin">kur alınıyor…</small>
-        <span id="kamera-durum">Hazırlanıyor…</span>
-      </div>
-      <button class="kamera-yuvarlak" id="kamera-flas" type="button" aria-label="Işık">⚡︎</button>
-    </div>
-    <div class="kamera-gorunum" id="kamera-gorunum">
-      <video id="kamera-video" playsinline muted autoplay></video>
-      <div id="kamera-etiketler" aria-live="polite"></div>
-      <div class="kamera-cerceve" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-      <p class="kamera-ipucu" id="kamera-ipucu">Sayıları çerçeveye alın; karşılıkları kendiliğinden belirir</p>
-    </div>
-    <div class="kamera-alt">
-      <div class="secici kamera-hedef" role="radiogroup" aria-label="Parite">
-        <button type="button" role="radio" data-parite="EUR-TRY">EUR → TL</button>
-          <button type="button" role="radio" data-parite="USD-TRY">USD → TL</button>
-          <button type="button" role="radio" data-parite="EUR-USD">EUR → USD</button>
-          <button type="button" role="radio" data-parite="USD-EUR">USD → EUR</button>
-          <button type="button" role="radio" data-parite="TRY-EUR">TL → EUR</button>
-          <button type="button" role="radio" data-parite="TRY-USD">TL → USD</button>
-      </div>
-      <div class="kamera-dugmeler">
-        <button class="kamera-yuvarlak" id="kamera-galeri" type="button" aria-label="Galeri">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-        </button>
-        <button class="kamera-deklansor" id="kamera-cek" type="button" aria-label="Görüntüyü dondur ve listele"></button>
-        <button class="kamera-yuvarlak" id="kamera-yardim" type="button" aria-label="Yardım">?</button>
-      </div>
-      <p class="kamera-altyazi">Deklanşör: görüntüyü dondurur, liste çıkarır</p>
-    </div>
-  </div>
-
-  <!-- ============ O GÜN KUR ============ -->
-  <section class="ekran" id="ekran-ogun" data-ekran="ogun" hidden>
-    <h1 class="ekran-baslik">O Gün Kur Neydi?</h1>
-    <p class="ekran-alt">2006'dan bugüne TCMB'nin o gün ilan ettiği kur.</p>
-
-    <div class="kart">
-      <label class="alan">
-        <span class="alan-etiket">Tarih</span>
-        <input id="ogun-tarih" type="date" min="2006-01-01">
-      </label>
-      <div class="alan-satir">
-        <label class="alan">
-          <span class="alan-etiket">Para birimi</span>
-          <select id="ogun-para"></select>
-        </label>
-        <label class="alan">
-          <span class="alan-etiket" id="ogun-tutar-etiket">Tutar</span>
-          <input id="ogun-tutar" type="text" inputmode="decimal" autocomplete="off" value="1.000">
-        </label>
-      </div>
-      <button class="cevir kucuk" id="ogun-cevir" type="button">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3"/></svg>
-        <span id="ogun-yon-metin">Dövizden TL’ye</span>
-      </button>
-    </div>
-
-    <div class="kart ogun-sonuc" id="ogun-sonuc" hidden></div>
-    <p class="bilgi" id="ogun-bilgi"></p>
-  </section>
-
-  <!-- ============ İLETİŞİM ============ -->
-  <section class="ekran" id="ekran-iletisim" data-ekran="iletisim" hidden>
-    <h1 class="ekran-baslik">Bize Ulaşın</h1>
-
-    <div class="acik-kapali" id="acik-kapali"></div>
-
-    <div class="eylemler">
-      <a class="eylem" href="tel:+902166511295">
-        <span class="eylem-ikon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
-        <span class="eylem-metin"><b>Ara</b><small>(0216) 651 12 95</small></span>
-      </a>
-      <a class="eylem" href="tel:+902164749768">
-        <span class="eylem-ikon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
-        <span class="eylem-metin"><b>Ara</b><small>(0216) 474 97 68</small></span>
-      </a>
-      <a class="eylem wa" href="https://wa.me/905326015270" target="_blank" rel="noopener">
-        <span class="eylem-ikon"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 0 1 0 16.4 8.1 8.1 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.4 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4 2.5 1 3 .8 3.5.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.5-.4-.5-.6-.5h-.5z"/></svg></span>
-        <span class="eylem-metin"><b>WhatsApp’tan yazın</b><small>“Dolar kaç?” yazmanız yeterli</small></span>
-      </a>
-      <a class="eylem" href="https://www.google.com/maps/dir/?api=1&destination=Tempo%20D%C3%B6viz%20Mahir%20%C4%B0z%20Caddesi%20No%3A18%2F1A%20Altunizade%20%C3%9Csk%C3%BCdar%20%C4%B0stanbul" target="_blank" rel="noopener">
-        <span class="eylem-ikon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-        <span class="eylem-metin"><b>Yol tarifi</b><small>Mahir İz Cad. No: 18-A1, Altunizade — Üsküdar / İstanbul</small></span>
-      </a>
-      <a class="eylem" href="mailto:info@tempodoviz.com">
-        <span class="eylem-ikon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
-        <span class="eylem-metin"><b>E-posta</b><small>info@tempodoviz.com</small></span>
-      </a>
-    </div>
-
-    <h2 class="bolum-baslik">Çalışma saatleri</h2>
-    <div class="kart saatler">
-      <div><span>Pazartesi – Cuma</span><b>08:00 – 18:00</b></div>
-      <div><span>Cumartesi</span><b>08:00 – 15:00</b></div>
-      <div><span>Pazar</span><b class="kapali">Kapalı</b></div>
-    </div>
-
-    <h2 class="bolum-baslik">Nakit taşımadan, havale/EFT ile</h2>
-    <ol class="adimlar">
-      <li><b>Tutarı ve kuru teyit edin.</b> Almak istediğiniz döviz tutarını bize iletin; o anki kur teyit edilir, yüksek tutarlarda size özel fiyat çalışılır.</li>
-      <li><b>TL’yi havale/EFT ile gönderin.</b> Teyit edilen karşılığı şirket hesabımıza gönderin.</li>
-      <li><b>Dövizinizi teslim alın.</b> Altunizade’deki şubemizden dövizinizi alın.</li>
-    </ol>
-
-    <h2 class="bolum-baslik">Sitede devam edin</h2>
-    <div class="baglantilar">
-      <a href="https://www.tempodoviz.com/#hedef-alarmi" target="_blank" rel="noopener">Hedef kur alarmı kur <span>›</span></a>
-      <a href="https://www.tempodoviz.com/#duzenli-bulten" target="_blank" rel="noopener">Düzenli fiyat bülteni <span>›</span></a>
-      <a href="https://www.tempodoviz.com/musteri-kabul" target="_blank" rel="noopener">Müşteri kaydı başlat <span>›</span></a>
-      <a href="https://www.tempodoviz.com/havale-eft" target="_blank" rel="noopener">Havale/EFT ayrıntıları <span>›</span></a>
-    </div>
-
-    <p class="dipnot">Tempo Döviz ve Altın Ticareti Yetkili Müessese A.Ş. — Hazine ve Maliye Bakanlığı izniyle kurulmuş A Grubu yetkili müessese. 1988'den beri.</p>
-  </section>
-
-</main>
-
-<nav class="sekmeler" aria-label="Ana menü">
-  <button class="sekme aktif" data-hedef="kurlar" type="button">
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
-    <span>Kurlar</span>
-  </button>
-  <button class="sekme" data-hedef="hesapla" type="button">
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M16 15h0M8 19h6"/></svg>
-    <span>Hesapla</span>
-  </button>
-  <button class="sekme sekme-alsat" data-hedef="alsat" type="button">
-    <span class="sekme-o" aria-hidden="true"></span>
-    <span>Al/Sat</span>
-  </button>
-  <button class="sekme" data-hedef="ogun" type="button">
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-    <span>O Gün</span>
-  </button>
-  <button class="sekme" data-hedef="iletisim" type="button">
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
-    <span>İletişim</span>
-  </button>
-</nav>
-
-</div><!-- /bolum-doviz -->
-
-<!-- ============ ALTIN BÖLÜMÜ ============ -->
-<div class="bolum" id="bolum-altin" data-bolum="altin" hidden>
+<!-- ============ ALTIN ============ -->
+<div class="bolum" id="bolum-altin" data-bolum="altin">
 
 <header class="ust">
-  <!-- TEMPO ALTIN | 1988: aynı parçalı logo, altın renkte; bant altın sitesinin logosundan -->
-  <button class="marka logo-doviz logo-altin" type="button" data-kapi title="Bölüm seç" aria-label="Tempo Altın — bölüm seç">
+  <!-- TEMPO ALTIN | 1988: parçalı logo (marka/logo-altin-yatay-2400.png), O 3 sn'de bir döner; dokununca vitrin -->
+  <button class="marka logo-tempo logo-altin" type="button" title="Vitrin" aria-label="Tempo Altın — vitrin">
     <span class="logo-yazi" aria-hidden="true"></span>
     <span class="logo-o" aria-hidden="true"></span>
     <span class="logo-bant" aria-hidden="true"></span>
   </button>
   <div class="ust-sag">
+    <!-- Sepet ve ödeme sitede (Emre, 2 Eki: "ödemeyi sitede tamamla"; sepet sitenin çerezinde) -->
+    <a class="tema" href="https://tempoaltin.com/sepet" target="_blank" rel="noopener" title="Sepetim (tempoaltin.com)" aria-label="Sepetim">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2.6l2.3 11.4a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L20.6 7H6.1"/></svg>
+    </a>
     <button class="tema" id="altin-tema" type="button" title="Aydınlat / karart" aria-label="Aydınlat / karart">
       <svg class="tema-gunes" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       <svg class="tema-ay" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -400,7 +65,7 @@
 <main class="ana">
 
   <!-- ============ FİYATLAR ============ -->
-  <section class="ekran" id="ekran-fiyatlar" data-ekran="fiyatlar">
+  <section class="ekran" id="ekran-fiyatlar" data-ekran="fiyatlar" hidden>
     <div class="altin-one" id="altin-one" aria-live="polite">
       <span class="altin-one-etiket">Has Altın · gram</span>
       <span class="altin-one-fiyat" id="altin-one-fiyat">—</span>
@@ -445,46 +110,52 @@
     <p class="bilgi" id="ah-bilgi"></p>
   </section>
 
-  <!-- ============ MAĞAZA (siteye köprü) ============ -->
-  <section class="ekran" id="ekran-magaza" data-ekran="magaza" hidden>
-    <h1 class="ekran-baslik">Mağaza</h1>
-    <p class="ekran-alt">Sertifikalı külçe, ziynet ve gümüş — canlı fiyattan, sigortalı teslimatla. Sipariş tempoaltin.com'da tamamlanır.</p>
+  <!-- ============ DİNAMİK SAYFA ============
+       Vitrin, ürünler, ürün, bütçe, hediyelik, hizmetler, kampanyalar, sözleşmeler…
+       magaza.js çizer (TempoApp.sayfaKaydet). -->
+  <section class="ekran" id="ekran-sayfa" data-ekran="sayfa"></section>
 
-    <div class="magaza-izgara">
-      <a class="magaza-kart" href="https://tempoaltin.com/kategori/gram-kulce-altin" target="_blank" rel="noopener">
-        <b>Gram Külçe Altın</b><small>1 gr – 12,5 kg · 995,0 ve 999,9</small>
-      </a>
-      <a class="magaza-kart" href="https://tempoaltin.com/kategori/ziynet-altin" target="_blank" rel="noopener">
-        <b>Ziynet Altın</b><small>Çeyrek, yarım, tam, Reşat, Ata</small>
-      </a>
-      <a class="magaza-kart" href="https://tempoaltin.com/kategori/gram-kulce-gumus" target="_blank" rel="noopener">
-        <b>Gram Külçe Gümüş</b><small>50 gr – 15 kg · 999,0</small>
-      </a>
-      <a class="magaza-kart" href="https://tempoaltin.com/kategori/taki" target="_blank" rel="noopener">
-        <b>22 Ayar Bilezik</b><small>Burma, Ajda, kibrit çöpü…</small>
-      </a>
-      <a class="magaza-kart" href="https://tempoaltin.com/kategori/hesaba-altin-havale" target="_blank" rel="noopener">
-        <b>Hesaba Altın Havale</b><small>Fiziki teslimatsız, küsuratlı gram</small>
-      </a>
-      <a class="magaza-kart" href="https://tempoaltin.com/duzenli-birikim" target="_blank" rel="noopener">
-        <b>Düzenli Birikim</b><small>Her ay bir külçe</small>
-      </a>
+  <!-- ============ DAHA ============ -->
+  <section class="ekran" id="ekran-daha" data-ekran="daha" hidden>
+    <h1 class="ekran-baslik">Daha fazla</h1>
+
+    <div class="hesap-kutu">
+      <div><b>Hesabım</b><small>Sepet, ödeme, siparişler ve üyelik tempoaltin.com'da; aynı hesapla.</small></div>
+      <div class="hesap-dugmeler">
+        <a class="dugme" href="https://tempoaltin.com/sepet" target="_blank" rel="noopener">Sepetim</a>
+        <a class="dugme ikincil" href="https://tempoaltin.com/hesap" target="_blank" rel="noopener">Hesabım</a>
+        <a class="dugme ikincil" href="https://tempoaltin.com/kayit" target="_blank" rel="noopener">Üye ol</a>
+      </div>
     </div>
 
     <h2 class="bolum-baslik">Hizmetler</h2>
     <div class="baglantilar">
-      <a href="https://tempoaltin.com/gel-al" target="_blank" rel="noopener">Gel Al — internetten al, mağazadan teslim <span>›</span></a>
-      <a href="https://tempoaltin.com/vadeli-altin" target="_blank" rel="noopener">Vadeli Altın — 15–90 gün, %3'e varan indirim <span>›</span></a>
-      <a href="https://tempoaltin.com/hesaptan-fiziki-altin" target="_blank" rel="noopener">Hesaptan Fiziki Altına <span>›</span></a>
-      <a href="https://tempoaltin.com/kampanyalar" target="_blank" rel="noopener">Kampanyalar <span>›</span></a>
-      <a href="https://tempoaltin.com/siparis-takip" target="_blank" rel="noopener">Sipariş takip <span>›</span></a>
+      <a href="#gel-al">Gel Al — internetten alın, mağazadan alın <span>›</span></a>
+      <a href="#vadeli-altin">Vadeli Altın — %3’e varan indirim <span>›</span></a>
+      <a href="#urunler/hesaba-altin-havale">Hesaba Altın Havale <span>›</span></a>
+      <a href="#hesaptan-fiziki-altin">Hesaptan Fiziki Altına <span>›</span></a>
+      <a href="#duzenli-birikim">Düzenli Birikim <span>›</span></a>
+      <a href="#kampanyalar">Kampanyalar <span>›</span></a>
     </div>
 
-    <div class="guven">
-      <div><b>Sertifikalı ürün</b><small>Seri numaralı üretici sertifikası ve blister ambalaj</small></div>
-      <div><b>Şeffaf fiyat</b><small>Ödeme sayfasında gördüğünüz fiyat 3 dakika kilitlenir</small></div>
-      <div><b>Sigortalı teslimat</b><small>Bedelinin tamamı üzerinden; yalnızca size, kimlikle</small></div>
+    <h2 class="bolum-baslik">Alışveriş</h2>
+    <div class="baglantilar">
+      <a href="#butce">Bütçenize göre altın <span>›</span></a>
+      <a href="#hediyelik">Hediyelik altın <span>›</span></a>
+      <a href="#siparis-takip">Sipariş takip <span>›</span></a>
+      <a href="#kargo-ve-teslimat">Kargo ve teslimat <span>›</span></a>
     </div>
+
+    <h2 class="bolum-baslik">Kurumsal</h2>
+    <div class="baglantilar">
+      <a href="#iletisim">İletişim ve çalışma saatleri <span>›</span></a>
+      <a href="#hakkimizda">Hakkımızda <span>›</span></a>
+    </div>
+
+    <h2 class="bolum-baslik">Sözleşmeler ve politikalar</h2>
+    <div class="baglantilar" id="daha-sozlesmeler"></div>
+
+    <p class="dipnot">Fiyatlar uluslararası piyasalara bağlı olarak anlık değişir; kıymetli maden siparişlerinde cayma hakkı bulunmaz. Kıymetli maden satışı 5549 sayılı Kanun kapsamında kimlik tespitine tabidir. Ödeme 3D Secure ile; kart bilgileri Tempo’ya iletilmez. © 2026 Tempo Teknoloji Ticaret A.Ş. · Mücevher İhracatçıları Birliği üyesi</p>
   </section>
 
   <!-- ============ İLETİŞİM ============ -->
@@ -519,12 +190,12 @@
       <div><span>Pazar</span><b class="kapali">Kapalı</b></div>
     </div>
 
-    <h2 class="bolum-baslik">Sitede devam edin</h2>
+    <h2 class="bolum-baslik">Siparişiniz ve sorularınız</h2>
     <div class="baglantilar">
-      <a href="https://tempoaltin.com/siparis-takip" target="_blank" rel="noopener">Sipariş takip <span>›</span></a>
-      <a href="https://tempoaltin.com/kargo-ve-teslimat" target="_blank" rel="noopener">Kargo ve teslimat <span>›</span></a>
-      <a href="https://tempoaltin.com/iletisim" target="_blank" rel="noopener">İletişim formu <span>›</span></a>
-      <a href="https://tempoaltin.com/hakkimizda" target="_blank" rel="noopener">Hakkımızda <span>›</span></a>
+      <a href="#siparis-takip">Sipariş takip <span>›</span></a>
+      <a href="#kargo-ve-teslimat">Kargo ve teslimat <span>›</span></a>
+      <a href="https://tempoaltin.com/iletisim" target="_blank" rel="noopener">İletişim formu (tempoaltin.com) <span>↗</span></a>
+      <a href="#hakkimizda">Hakkımızda <span>›</span></a>
     </div>
 
     <p class="dipnot">Tempo Teknoloji Ticaret A.Ş. — 1988'den gelen Tempo adının altın ve kıymetli maden markası. Kıymetli maden satışı 5549 sayılı Kanun kapsamında kimlik tespitine tabidir.</p>
@@ -532,8 +203,16 @@
 
 </main>
 
-<nav class="sekmeler sekmeler-4" aria-label="Altın menüsü">
-  <button class="sekme aktif" data-hedef="fiyatlar" type="button">
+<nav class="sekmeler" aria-label="Altın menüsü">
+  <button class="sekme aktif" data-hedef="vitrin" type="button">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v12h14V9"/></svg>
+    <span>Vitrin</span>
+  </button>
+  <button class="sekme" data-hedef="urunler" type="button">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg>
+    <span>Ürünler</span>
+  </button>
+  <button class="sekme" data-hedef="fiyatlar" type="button">
     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
     <span>Fiyatlar</span>
   </button>
@@ -541,13 +220,9 @@
     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M16 15h0M8 19h6"/></svg>
     <span>Hesapla</span>
   </button>
-  <button class="sekme" data-hedef="magaza" type="button">
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 11v10h14V11"/><path d="M10 21v-6h4v6"/></svg>
-    <span>Mağaza</span>
-  </button>
-  <button class="sekme" data-hedef="iletisim" type="button">
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
-    <span>İletişim</span>
+  <button class="sekme" data-hedef="daha" type="button">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <span>Daha</span>
   </button>
 </nav>
 
@@ -555,6 +230,6 @@
 
 <script src="/app.js"></script>
 <script src="/altin.js"></script>
-<script src="/lens/lens.js"></script>
+<script src="/magaza.js"></script>
 </body>
 </html>

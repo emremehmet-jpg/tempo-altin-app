@@ -1,0 +1,916 @@
+{
+ "pages": [
+  {
+   "route": "/",
+   "file": "sayfalar/ana.md",
+   "title": "Tempo Altın | Gram Külçe Altın, Gümüş ve Ziynet — 1988’den beri",
+   "description": "Sertifikalı gram külçe altın, gümüş, ziynet altın ve 22 ayar bilezik. Canlı fiyat, sigortalı ücretsiz teslimat, 3D Secure güvenli ödeme.",
+   "purpose": "Ana sayfa: hero, banner karuseli (6 slayt), vitrin (8 ürün), bütçe formu, hediyelik vesileler, güven kartları, kategori kartları, Düzenli Birikim tanıtımı, kurumsal blok",
+   "headings": [
+    "Altın, sade haliyle.",
+    "Zarif tasarım,",
+    "Vitrin",
+    "Ne kadar ayırmak istersiniz?",
+    "Özel gün için altın",
+    "Ne arıyorsunuz?",
+    "Her ay bir külçe.",
+    "Köklü bir kurumun dijital mağazası."
+   ],
+   "formFields": [
+    "tutar"
+   ],
+   "buttons": [
+    "Ekle",
+    "Göster"
+   ]
+  },
+  {
+   "route": "/arama",
+   "file": "sayfalar/arama.md",
+   "title": "Arama | Tempo Altın",
+   "description": "Sertifikalı gram külçe altın, gümüş, ziynet altın ve 22 ayar bilezik. Canlı fiyat, sigortalı ücretsiz teslimat, 3D Secure güvenli ödeme.",
+   "purpose": "Arama (?q=); 3+ haneli sayı aranırsa /butce?tutar= yönlenir",
+   "headings": [
+    "“”"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/blog",
+   "file": "sayfalar/blog.md",
+   "title": "Blog — altın yatırımı, külçe ve ziynet rehberi | Tempo Altın",
+   "description": "Gram altın, külçe, ziynet ve gümüş hakkında rehberler; fiyatın nasıl oluştuğu, saklama, sertifika ve teslimat üzerine Tempo Altın yazıları.",
+   "purpose": "Blog (henüz yazı yok)",
+   "headings": [
+    "Altın hakkında, sade."
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/butce",
+   "file": "sayfalar/butce.md",
+   "title": "Bütçeme Göre Altın | Tempo Altın",
+   "description": "Sertifikalı gram külçe altın, gümüş, ziynet altın ve 22 ayar bilezik. Canlı fiyat, sigortalı ücretsiz teslimat, 3D Secure güvenli ödeme.",
+   "purpose": "Bütçeye göre altın (tutar + amaç: yatirim/hediye/iscilik/kampanya)",
+   "headings": [
+    "Ne kadar ayırmak istersiniz?"
+   ],
+   "formFields": [
+    "tutar"
+   ],
+   "buttons": [
+    "Ekle",
+    "Göster"
+   ]
+  },
+  {
+   "route": "/dogrula",
+   "file": "sayfalar/dogrula.md",
+   "title": null,
+   "description": null,
+   "purpose": "E-posta doğrulama bağlantısı karşılama (token yoksa \"Bağlantı geçersiz\")",
+   "headings": [
+    "Bağlantı geçersiz"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/duzenli-birikim",
+   "file": "sayfalar/duzenli-birikim.md",
+   "title": "Düzenli Birikim — her ay bir külçe | Tempo Altın",
+   "description": "Ürünü ve sıklığı seçin, kartınızı bağlayın; her dönem o günün fiyatıyla alınır, sertifikalı külçeniz sigortalı gelir. Dilediğiniz an durdurun.",
+   "purpose": "Düzenli Birikim: simülatör (ürün/sıklık/süre), adımlar, SSS; plan kurma login ister",
+   "headings": [
+    "Kartınızı bağlayın,",
+    "Nasıl çalışır?",
+    "Zamanı lehinize çevirin.",
+    "Sık sorulanlar"
+   ],
+   "formFields": [],
+   "buttons": [
+    "1 g külçe",
+    "10 g külçe",
+    "2 haftada bir",
+    "2,5 g külçe",
+    "20 g külçe",
+    "5 g külçe",
+    "50 g külçe",
+    "Her ay",
+    "Her hafta",
+    "Tam Altın",
+    "Yarım Altın",
+    "Çeyrek Altın"
+   ]
+  },
+  {
+   "route": "/gel-al",
+   "file": "sayfalar/gel-al.md",
+   "title": "Gel Al — sipariş internetten, teslim mağazadan | Tempo Altın",
+   "description": "Siparişinizi canlı fiyattan verin, fiyatınız kilitlensin; ürününüzü mağazamızdan kimliğinizle teslim alın.",
+   "purpose": "Gel Al (mağazadan teslim) hizmet anlatımı + SSS",
+   "headings": [
+    "Sipariş internetten,",
+    "Sipariş verin",
+    "Hazırlandı bildirimi",
+    "Mağazaya gelin",
+    "Kimlikle teslim",
+    "Fiyat kilidi",
+    "Stoktan hemen",
+    "Kimlik tespiti",
+    "Sorular"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/giris",
+   "file": "sayfalar/giris.md",
+   "title": "Giriş Yap | Tempo Altın",
+   "description": "Sertifikalı gram külçe altın, gümüş, ziynet altın ve 22 ayar bilezik. Canlı fiyat, sigortalı ücretsiz teslimat, 3D Secure güvenli ödeme.",
+   "purpose": "E-posta + şifre girişi (+ gerekirse 2FA TOTP). ?next= yönlendirme",
+   "headings": [
+    "Giriş Yap"
+   ],
+   "formFields": [
+    "email",
+    "password"
+   ],
+   "buttons": [
+    "Giriş Yap"
+   ]
+  },
+  {
+   "route": "/hakkimizda",
+   "file": "sayfalar/hakkimizda.md",
+   "title": "Hakkımızda | Tempo Altın",
+   "description": "Sertifikalı gram külçe altın, gümüş, ziynet altın ve 22 ayar bilezik. Canlı fiyat, sigortalı ücretsiz teslimat, 3D Secure güvenli ödeme.",
+   "purpose": "Kurumsal tanıtım",
+   "headings": [
+    "Hakkımızda",
+    "Sertifikalı ürün güvencesi",
+    "Şeffaf fiyatlama",
+    "Güvenli teslimat",
+    "Yasal uyum"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/hediyelik",
+   "file": "sayfalar/hediyelik.md",
+   "title": "Hediyelik Altın | Tempo Altın",
+   "description": "Sertifikalı gram külçe altın, gümüş, ziynet altın ve 22 ayar bilezik. Canlı fiyat, sigortalı ücretsiz teslimat, 3D Secure güvenli ödeme.",
+   "purpose": "Vesile (düğün, yeni doğan, doğum günü, yıldönümü, mezuniyet, kurumsal) + bütçe filtresiyle ürün önerisi",
+   "headings": [
+    "Geleneğin ağırlığı, sertifikanın güveni."
+   ],
+   "formFields": [],
+   "buttons": [
+    "Ekle"
+   ]
+  },
+  {
+   "route": "/hesaptan-fiziki-altin",
+   "file": "sayfalar/hesaptan-fiziki-altin.md",
+   "title": "Hesaptan Fiziki Altına | Tempo Altın",
+   "description": "Bankadaki altın hesabınızdaki gramı Tempo’ya aktarın; sertifikalı külçe olarak mağazadan ya da sigortalı kargoyla teslim alın.",
+   "purpose": "Banka altın hesabındaki gramı fiziki külçeye çevirme talep formu",
+   "headings": [
+    "Hesaptaki gram,",
+    "Talep bırakın",
+    "Transfer bilgileri",
+    "Gramı aktarın",
+    "Teslim alın",
+    "Sizi arayalım.",
+    "Sorular"
+   ],
+   "formFields": [
+    "bank",
+    "delivery",
+    "email",
+    "fullName",
+    "gram",
+    "kvkk",
+    "note",
+    "phone"
+   ],
+   "buttons": [
+    "Talep oluştur"
+   ]
+  },
+  {
+   "route": "/hizmetler",
+   "file": "sayfalar/hizmetler.md",
+   "title": "Hizmetler | Tempo Altın",
+   "description": "Gel Al, Vadeli Altın, Hesaba Altın Havale, Hesaptan Fiziki Altına ve Düzenli Birikim hizmetleri.",
+   "purpose": "Hizmet kartları (Gel Al, Vadeli, Hesaba Havale, Hesaptan Fiziki)",
+   "headings": [
+    "Altını sizin ritminizde.",
+    "İnternetten alın, mağazadan alın.",
+    "Bugün alın, vadesinde teslim alın.",
+    "Fiziki teslimatsız, küsuratlı gram.",
+    "Hesaptaki gram, elinizde külçe."
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/iletisim",
+   "file": "sayfalar/iletisim.md",
+   "title": "İletişim | Tempo Altın",
+   "description": "Sertifikalı gram külçe altın, gümüş, ziynet altın ve 22 ayar bilezik. Canlı fiyat, sigortalı ücretsiz teslimat, 3D Secure güvenli ödeme.",
+   "purpose": "İletişim bilgileri + iletişim formu",
+   "headings": [
+    "İletişim"
+   ],
+   "formFields": [
+    "email",
+    "kvkk",
+    "message",
+    "name",
+    "orderNo",
+    "phone",
+    "subject",
+    "type",
+    "website"
+   ],
+   "buttons": [
+    "Gönder"
+   ]
+  },
+  {
+   "route": "/kampanyalar",
+   "file": "sayfalar/kampanyalar.md",
+   "title": "Kampanyalar — hediye altın ve fırsatlar | Tempo Altın",
+   "description": "Sertifikalı gram külçe altın, gümüş, ziynet altın ve 22 ayar bilezik. Canlı fiyat, sigortalı ücretsiz teslimat, 3D Secure güvenli ödeme.",
+   "purpose": "Aktif kampanyalar (ilk sipariş 250 ₺, gümüşte havale %2) + Birikim/Vadeli tanıtım",
+   "headings": [
+    "Açık koşul,",
+    "İlk Siparişine 250 ₺ İndirim",
+    "Havale/EFT ile Gümüşte %2 İndirim",
+    "Kampanya beklemeden her ay altın.",
+    "Beklemenin karşılığı: %3,00’e varan indirim."
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/kargo-ve-teslimat",
+   "file": "sayfalar/kargo-ve-teslimat.md",
+   "title": "Kargo ve Teslimat | Tempo Altın",
+   "description": "Sertifikalı gram külçe altın, gümüş, ziynet altın ve 22 ayar bilezik. Canlı fiyat, sigortalı ücretsiz teslimat, 3D Secure güvenli ödeme.",
+   "purpose": "Teslimat yöntemleri ve kurallar",
+   "headings": [
+    "Kargo ve Teslimat",
+    "Sigortalı kargo (ücretsiz)",
+    "Moto kurye (İstanbul)",
+    "Zırhlı araç",
+    "Mağazadan teslim",
+    "Teslimatta kimlik",
+    "Hasarlı paket"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/kategori/995-kulce-altin",
+   "file": "sayfalar/kategori/995-kulce-altin.md",
+   "title": "995.0 Külçe Altın Fiyatları | Tempo Altın",
+   "description": "995,0 milyem 24 ayar külçe altın; 1 gramdan 1 kilograma sertifikalı, seri numaralı.",
+   "purpose": null,
+   "headings": [
+    "995.0 Külçe Altın",
+    "Fiyatlar nasıl belirlenir?",
+    "Teslimat"
+   ],
+   "formFields": [
+    "sirala"
+   ],
+   "buttons": [
+    "Ekle",
+    "Uygula"
+   ]
+  },
+  {
+   "route": "/kategori/9999-kulce-altin",
+   "file": "sayfalar/kategori/9999-kulce-altin.md",
+   "title": "999.9 Külçe Altın Fiyatları | Tempo Altın",
+   "description": "999,9 milyem 24 ayar has külçe altın; 1 gramdan 12,5 kilograma sertifikalı, seri numaralı.",
+   "purpose": null,
+   "headings": [
+    "999.9 Külçe Altın",
+    "Fiyatlar nasıl belirlenir?",
+    "Teslimat"
+   ],
+   "formFields": [
+    "sirala"
+   ],
+   "buttons": [
+    "Ekle",
+    "Uygula"
+   ]
+  },
+  {
+   "route": "/kategori/ajda-bilezik",
+   "file": "sayfalar/kategori/ajda-bilezik.md",
+   "title": "Ajda Bilezik Fiyatları | Tempo Altın",
+   "description": "22 ayar Ajda bilezik; klasik model, işçilik dahil şeffaf fiyat.",
+   "purpose": null,
+   "headings": [
+    "Ajda Bilezik",
+    "Fiyatlar nasıl belirlenir?",
+    "Teslimat"
+   ],
+   "formFields": [
+    "sirala"
+   ],
+   "buttons": [
+    "Ekle",
+    "Uygula"
+   ]
+  },
+  {
+   "route": "/kategori/ata-altin",
+   "file": "sayfalar/kategori/ata-altin.md",
+   "title": "Ata Altın Fiyatları | Tempo Altın",
+   "description": "Ata altın: Atatürk portreli Darphane basımı çeyrek, yarım ve tam ziynet altını.",
+   "purpose": null,
+   "headings": [
+    "Ata Altın",
+    "Fiyatlar nasıl belirlenir?",
+    "Teslimat"
+   ],
+   "formFields": [
+    "sirala"
+   ],
+   "buttons": [
+    "Ekle",
+    "Uygula"
+   ]
+  },
+  {
+   "route": "/kategori/burma-bilezik",
+   "file": "sayfalar/kategori/burma-bilezik.md",
+   "title": "Burma Bilezik Fiyatları | Tempo Altın",
+   "description": "22 ayar burma bilezik; 2'li, 3'lü ve 4'lü burma modelleri, gram bazlı fiyat.",
+   "purpose": null,
+   "headings": [
+    "Burma Bilezik",
+    "Fiyatlar nasıl belirlenir?",
+    "Teslimat"
+   ],
+   "formFields": [
+    "sirala"
+   ],
+   "buttons": [
+    "Ekle",
+    "Uygula"
+   ]
+  },
+  {
+   "route": "/kategori/ceyrek-yarim-tam",
+   "file": "sayfalar/kategori/ceyrek-yarim-tam.md",
+   "title": "Çeyrek / Yarım / Tam Fiyatları | Tempo Altın",
+   "description": "Darphane basımı çeyrek, yarım ve tam altın; yeni ve eski tarihli seçenekler.",
+   "purpose": null,
+   "headings": [
+    "Çeyrek / Yarım / Tam",
+    "Fiyatlar nasıl belirlenir?",
+    "Teslimat"
+   ],
+   "formFields": [
+    "sirala"
+   ],
+   "buttons": [
+    "Ekle",
+    "Uygula"
+   ]
+  },
+  {
+   "route": "/kategori/gram-kulce-altin",
+   "file": "sayfalar/kategori/gram-kulce-altin.md",
+   "title": "Gram Külçe Altın Fiyatları | Tempo Altın",
+   "description": "1 gramdan 12,5 kilograma sertifikalı, LBMA standartlarında külçe altın.",
+   "purpose": null,
+   "headings": [
+    "Gram Külçe Altın",
+    "Fiyatlar nasıl belirlenir?",
+    "Teslimat"
+   ],
+   "formFields": [
+    "sirala"
+   ],
+   "buttons": [
+    "Ekle",
+    "Uygula"
+   ]
+  },
+  {
+   "route": "/kategori/gram-kulce-gumus",
+   "file": "sayfalar/kategori/gram-kulce-gumus.md",
+   "title": "Gram Külçe Gümüş Fiyatları | Tempo Altın",
+   "description": "50 gramdan 15 kilograma 999.0 saflıkta külçe gümüş.",
+   "purpose": null,
+   "headings": [
+    "Gram Külçe Gümüş",
+    "Fiyatlar nasıl belirlenir?",
+    "Teslimat"
+   ],
+   "formFields": [
+    "sirala"
+   ],
+   "buttons": [
+    "Ekle",
+    "Uygula"
+   ]
+  },
+  {
+   "route": "/kategori/hesaba-altin-havale",
+   "file": "sayfalar/kategori/hesaba-altin-havale.md",
+   "title": "Hesaba Altın Havale Fiyatları | Tempo Altın",
+   "description": "Fiziki teslimat olmadan, banka altın hesabınıza gram altın transferi.",
+   "purpose": null,
+   "headings": [
+    "Hesaba Altın Havale",
+    "Kargo yok, kasa yok — gram var.",
+    "IBAN’ınızı girin",
+    "Gramı seçin",
+    "Ödeyin",
+    "Hesabınızda",
+    "Fiyatlar nasıl belirlenir?",
+    "Teslimat"
+   ],
+   "formFields": [
+    "sirala"
+   ],
+   "buttons": [
+    "Ekle",
+    "Uygula"
+   ]
+  },
+  {
+   "route": "/kategori/kibrit-copu-bilezik",
+   "file": "sayfalar/kategori/kibrit-copu-bilezik.md",
+   "title": "Kibrit Çöpü Bilezik Fiyatları | Tempo Altın",
+   "description": "22 ayar kibrit çöpü bilezik; ince ve zarif, gram bazlı canlı fiyat.",
+   "purpose": null,
+   "headings": [
+    "Kibrit Çöpü Bilezik",
+    "Fiyatlar nasıl belirlenir?",
+    "Teslimat"
+   ],
+   "formFields": [
+    "sirala"
+   ],
+   "buttons": [
+    "Ekle",
+    "Uygula"
+   ]
+  },
+  {
+   "route": "/kategori/model-bilezik",
+   "file": "sayfalar/kategori/model-bilezik.md",
+   "title": "Model Bilezik Fiyatları | Tempo Altın",
+   "description": "22 ayar model bilezikler; farklı işçilik ve gramajlarda seçenekler.",
+   "purpose": null,
+   "headings": [
+    "Model Bilezik",
+    "Fiyatlar nasıl belirlenir?",
+    "Teslimat"
+   ],
+   "formFields": [
+    "sirala"
+   ],
+   "buttons": [
+    "Ekle",
+    "Uygula"
+   ]
+  },
+  {
+   "route": "/kategori/resat-altin",
+   "file": "sayfalar/kategori/resat-altin.md",
+   "title": "Reşat Altın Fiyatları | Tempo Altın",
+   "description": "Reşat altın: koleksiyon ve ziynet için Darphane basımı çeyrek, yarım, tam ve gremse.",
+   "purpose": null,
+   "headings": [
+    "Reşat Altın",
+    "Fiyatlar nasıl belirlenir?",
+    "Teslimat"
+   ],
+   "formFields": [
+    "sirala"
+   ],
+   "buttons": [
+    "Ekle",
+    "Uygula"
+   ]
+  },
+  {
+   "route": "/kategori/taki",
+   "file": "sayfalar/kategori/taki.md",
+   "title": "Takı Fiyatları | Tempo Altın",
+   "description": "22 ayar bilezikler; gram fiyatı ve işçiliği şeffaf.",
+   "purpose": null,
+   "headings": [
+    "Takı",
+    "Fiyatlar nasıl belirlenir?",
+    "Teslimat"
+   ],
+   "formFields": [
+    "sirala"
+   ],
+   "buttons": [
+    "Ekle",
+    "Uygula"
+   ]
+  },
+  {
+   "route": "/kategori/ziynet-altin",
+   "file": "sayfalar/kategori/ziynet-altin.md",
+   "title": "Ziynet Altın Fiyatları | Tempo Altın",
+   "description": "Darphane basımı çeyrek, yarım, tam, Reşat ve Ata altınlar.",
+   "purpose": null,
+   "headings": [
+    "Ziynet Altın",
+    "Fiyatlar nasıl belirlenir?",
+    "Teslimat"
+   ],
+   "formFields": [
+    "sirala"
+   ],
+   "buttons": [
+    "Ekle",
+    "Uygula"
+   ]
+  },
+  {
+   "route": "/kayit",
+   "file": "sayfalar/kayit.md",
+   "title": "Üye Ol | Tempo Altın",
+   "description": "Sertifikalı gram külçe altın, gümüş, ziynet altın ve 22 ayar bilezik. Canlı fiyat, sigortalı ücretsiz teslimat, 3D Secure güvenli ödeme.",
+   "purpose": "4 adımlı üyelik sihirbazı: Telefon(SMS OTP) → Doğrula → E-posta → Bilgiler",
+   "headings": [
+    "Bir dakikada üye olun.",
+    "Cep telefonunuzla başlayalım."
+   ],
+   "formFields": [],
+   "buttons": [
+    "Kod gönder"
+   ]
+  },
+  {
+   "route": "/sepet",
+   "file": "sayfalar/sepet.md",
+   "title": "Sepetim | Tempo Altın",
+   "description": "Sertifikalı gram külçe altın, gümüş, ziynet altın ve 22 ayar bilezik. Canlı fiyat, sigortalı ücretsiz teslimat, 3D Secure güvenli ödeme.",
+   "purpose": "Sepet (sunucu tarafı, tk_cart). Boşken: \"Sepetiniz boş\" + Ürünleri gör",
+   "headings": [
+    "Sepetim 0 ürün"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/sifre-sifirla",
+   "file": "sayfalar/sifre-sifirla.md",
+   "title": null,
+   "description": null,
+   "purpose": "Token ile yeni şifre belirleme",
+   "headings": [
+    "Yeni Şifre"
+   ],
+   "formFields": [
+    "password"
+   ],
+   "buttons": [
+    "Şifreyi güncelle"
+   ]
+  },
+  {
+   "route": "/sifremi-unuttum",
+   "file": "sayfalar/sifremi-unuttum.md",
+   "title": "Şifremi Unuttum | Tempo Altın",
+   "description": "Sertifikalı gram külçe altın, gümüş, ziynet altın ve 22 ayar bilezik. Canlı fiyat, sigortalı ücretsiz teslimat, 3D Secure güvenli ödeme.",
+   "purpose": "Şifre sıfırlama bağlantısı iste (e-posta)",
+   "headings": [
+    "Şifremi Unuttum"
+   ],
+   "formFields": [
+    "email"
+   ],
+   "buttons": [
+    "Sıfırlama bağlantısı gönder"
+   ]
+  },
+  {
+   "route": "/siparis-takip",
+   "file": "sayfalar/siparis-takip.md",
+   "title": "Sipariş Takip — siparişiniz nerede? | Tempo Altın",
+   "description": "Sipariş numaranız ve telefonunuzla siparişinizin hangi aşamada olduğunu anlık görün. Üyelik gerekmez.",
+   "purpose": "Üyeliksiz sipariş sorgulama (sipariş no/kargo no + telefon), durum yolculuğu",
+   "headings": [
+    "Siparişiniz nerede?"
+   ],
+   "formFields": [
+    "orderNo",
+    "phone"
+   ],
+   "buttons": [
+    "Sorgula"
+   ]
+  },
+  {
+   "route": "/sozlesmeler/birikim-talimati",
+   "file": "sayfalar/sozlesmeler/birikim-talimati.md",
+   "title": "Düzenli Birikim Talimatı | Tempo Altın",
+   "description": "Düzenli Birikim Talimatı — Tempo Altın yasal bilgilendirme metni.",
+   "purpose": null,
+   "headings": [
+    "Düzenli Birikim Talimatı",
+    "1. Plan ve Dönemler",
+    "2. Kayıtlı Kart ve Tahsilat Yetkisi",
+    "3. Ön Bildirim ve Atlama",
+    "4. Başarısız Tahsilat",
+    "5. Teslimat",
+    "6. Cayma Hakkı",
+    "7. Duraklatma, İptal ve Sona Erme",
+    "8. Kayıtlı Kartın Silinmesi",
+    "9. Yasal Uyum ve Kişisel Veriler"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/sozlesmeler/cerez-politikasi",
+   "file": "sayfalar/sozlesmeler/cerez-politikasi.md",
+   "title": "Çerez Politikası | Tempo Altın",
+   "description": "Çerez Politikası — Tempo Altın yasal bilgilendirme metni.",
+   "purpose": null,
+   "headings": [
+    "Çerez Politikası",
+    "1. Çerez Nedir?",
+    "2. Kullandığımız Çerezler",
+    "3. Hukuki Sebep",
+    "4. Çerez Yönetimi",
+    "5. Haklarınız ve Güncellemeler"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/sozlesmeler/guvenlik",
+   "file": "sayfalar/sozlesmeler/guvenlik.md",
+   "title": "Güvenlik Politikası | Tempo Altın",
+   "description": "Güvenlik Politikası — Tempo Altın yasal bilgilendirme metni.",
+   "purpose": null,
+   "headings": [
+    "Güvenlik Politikası",
+    "SSL ile Şifreli Bağlantı",
+    "3D Secure ile Güvenli Ödeme",
+    "Kart Bilgileriniz Saklanmaz",
+    "Hesap Güvenliği",
+    "Fiyat Kilidi ve İşlem Bütünlüğü",
+    "Teslimat Güvenliği",
+    "Kişisel Verileriniz",
+    "Şüpheli Durumlarda"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/sozlesmeler/iptal-ve-iade",
+   "file": "sayfalar/sozlesmeler/iptal-ve-iade.md",
+   "title": "İptal ve İade Koşulları | Tempo Altın",
+   "description": "İptal ve İade Koşulları — Tempo Altın yasal bilgilendirme metni.",
+   "purpose": null,
+   "headings": [
+    "İptal ve İade Koşulları",
+    "A. İade Kapsamı Dışındaki Ürünler",
+    "B. Sipariş İptali",
+    "C. Ayıplı Ürün",
+    "D. Geri Alım",
+    "E. Bedel İadesi"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/sozlesmeler/kullanim-kosullari",
+   "file": "sayfalar/sozlesmeler/kullanim-kosullari.md",
+   "title": "Hüküm ve Koşullar | Tempo Altın",
+   "description": "Hüküm ve Koşullar — Tempo Altın yasal bilgilendirme metni.",
+   "purpose": null,
+   "headings": [
+    "Hüküm ve Koşullar",
+    "1. Tanımlar",
+    "2. Amaç ve Kapsam",
+    "3. Fiyat ve Piyasa Bilgileri",
+    "4. Kullanıcı Yükümlülükleri",
+    "5. Fikri Mülkiyet",
+    "6. Sorumluluğun Sınırı",
+    "7. Üçüncü Taraf Bağlantıları",
+    "8. Mücbir Sebep",
+    "9. Değişiklik",
+    "10. Bölünebilirlik ve Feragat",
+    "11. Uyuşmazlık"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/sozlesmeler/kvkk",
+   "file": "sayfalar/sozlesmeler/kvkk.md",
+   "title": "Gizlilik Politikası ve KVKK Aydınlatma Metni | Tempo Altın",
+   "description": "Gizlilik Politikası ve KVKK Aydınlatma Metni — Tempo Altın yasal bilgilendirme metni.",
+   "purpose": null,
+   "headings": [
+    "Gizlilik Politikası ve KVKK Aydınlatma Metni",
+    "1. Kapsam ve Veri Sorumlusu",
+    "2. İşlenen Kişisel Veriler",
+    "3. İşleme Amaçları ve Hukuki Sebepler",
+    "4. Toplama Yöntemi",
+    "5. Aktarım",
+    "6. Saklama Süresi",
+    "7. Veri Güvenliği",
+    "8. Haklarınız (Kanun m.11)",
+    "9. Çerezler",
+    "10. Değişiklikler"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/sozlesmeler/masak",
+   "file": "sayfalar/sozlesmeler/masak.md",
+   "title": "Suç Gelirlerinin Aklanmasının Önlenmesi Kapsamında Bilgilendirme | Tempo Altın",
+   "description": "Suç Gelirlerinin Aklanmasının Önlenmesi Kapsamında Bilgilendirme — Tempo Altın yasal bilgilendirme metni.",
+   "purpose": null,
+   "headings": [
+    "Suç Gelirlerinin Aklanmasının Önlenmesi Kapsamında Bilgilendirme",
+    "1. Kimlik Tespiti",
+    "2. Ödeme ve Teslimat İlkeleri",
+    "3. Şüpheli İşlem Bildirimi",
+    "4. Kayıt Saklama"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/sozlesmeler/mesafeli-satis",
+   "file": "sayfalar/sozlesmeler/mesafeli-satis.md",
+   "title": "Mesafeli Satış Sözleşmesi | Tempo Altın",
+   "description": "Mesafeli Satış Sözleşmesi — Tempo Altın yasal bilgilendirme metni.",
+   "purpose": null,
+   "headings": [
+    "Mesafeli Satış Sözleşmesi",
+    "1. Taraflar",
+    "2. Sözleşmenin Konusu",
+    "3. Sözleşme Konusu Ürün ve Fiyat",
+    "4. Ödeme",
+    "5. Teslimat",
+    "6. Cayma Hakkı",
+    "7. Müşteri Tanıma ve Yasal Uyum",
+    "8. Genel Hükümler",
+    "9. Kişisel Verilerin Korunması",
+    "10. Uyuşmazlık Çözümü",
+    "11. Yürürlük"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/sozlesmeler/on-bilgilendirme",
+   "file": "sayfalar/sozlesmeler/on-bilgilendirme.md",
+   "title": "Ön Bilgilendirme Formu | Tempo Altın",
+   "description": "Ön Bilgilendirme Formu — Tempo Altın yasal bilgilendirme metni.",
+   "purpose": null,
+   "headings": [
+    "Ön Bilgilendirme Formu",
+    "1. Satıcı Bilgileri",
+    "2. Ürünün Temel Nitelikleri",
+    "3. Fiyat ve Fiyatın Değişkenliği",
+    "4. Ödeme Şekli",
+    "5. Teslimat",
+    "6. Cayma Hakkı",
+    "7. Müşteri Tanıma",
+    "8. Şikâyet ve Başvuru"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/sozlesmeler/ticari-ileti",
+   "file": "sayfalar/sozlesmeler/ticari-ileti.md",
+   "title": "Ticari Elektronik İleti İzni Aydınlatma ve Onay Metni | Tempo Altın",
+   "description": "Ticari Elektronik İleti İzni Aydınlatma ve Onay Metni — Tempo Altın yasal bilgilendirme metni.",
+   "purpose": null,
+   "headings": [
+    "Ticari Elektronik İleti İzni Aydınlatma ve Onay Metni",
+    "Aydınlatma",
+    "Onay Beyanı"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/sozlesmeler/uyelik-sozlesmesi",
+   "file": "sayfalar/sozlesmeler/uyelik-sozlesmesi.md",
+   "title": "Üyelik Sözleşmesi | Tempo Altın",
+   "description": "Üyelik Sözleşmesi — Tempo Altın yasal bilgilendirme metni.",
+   "purpose": null,
+   "headings": [
+    "Üyelik Sözleşmesi",
+    "1. Konu",
+    "2. Üyelik Şartları",
+    "3. Kimlik Tespiti ve Yasal Uyum",
+    "4. Fiyat, Fiyat Kilidi ve Sipariş",
+    "5. Kampanyalar ve Düzenli Birikim",
+    "6. Yasaklı Kullanım",
+    "7. Bildirimler",
+    "8. Kişisel Veriler",
+    "9. Fesih",
+    "10. Değişiklik ve Uyuşmazlık"
+   ],
+   "formFields": [],
+   "buttons": []
+  },
+  {
+   "route": "/vadeli-altin",
+   "file": "sayfalar/vadeli-altin.md",
+   "title": "Vadeli Altın — bugün alın, vadesinde teslim alın | Tempo Altın",
+   "description": "Altını bugünkü fiyattan alın; 15–90 gün vade seçin, vadeye göre indirim kazanın. Fiyat ve gramaj sipariş anında sabitlenir.",
+   "purpose": "Vadeli Altın: 15/30/45/60/90 gün vade, %0,5–%3 indirim; nasıl çalışır + SSS",
+   "headings": [
+    "Bugün alın,",
+    "Ürünü seçin",
+    "Teslimat zamanını seçin",
+    "Bugün ödeyin",
+    "Günü gelince teslim",
+    "Sorular"
+   ],
+   "formFields": [],
+   "buttons": []
+  }
+ ],
+ "authOnlyRoutes": [
+  {
+   "route": "/odeme",
+   "auth": true,
+   "note": "Giriş gerektirir; 307 → /giris?next=..."
+  },
+  {
+   "route": "/hesap",
+   "auth": true,
+   "note": "Giriş gerektirir; 307 → /giris?next=..."
+  },
+  {
+   "route": "/hesap/siparisler",
+   "auth": true,
+   "note": "Giriş gerektirir; 307 → /giris?next=..."
+  },
+  {
+   "route": "/hesap/favoriler",
+   "auth": true,
+   "note": "Giriş gerektirir; 307 → /giris?next=..."
+  },
+  {
+   "route": "/hesap/adresler",
+   "auth": true,
+   "note": "Giriş gerektirir; 307 → /giris?next=..."
+  },
+  {
+   "route": "/hesap/birikim",
+   "auth": true,
+   "note": "Giriş gerektirir; 307 → /giris?next=..."
+  },
+  {
+   "route": "/hesap/birikim/yeni",
+   "auth": true,
+   "note": "Giriş gerektirir; 307 → /giris?next=..."
+  },
+  {
+   "route": "/hesap/alarmlar",
+   "auth": true,
+   "note": "Giriş gerektirir; 307 → /giris?next=..."
+  },
+  {
+   "route": "/hesap/kimlik",
+   "auth": true,
+   "note": "Giriş gerektirir; 307 → /giris?next=..."
+  },
+  {
+   "route": "/hesap/faturalar",
+   "auth": true,
+   "note": "Giriş gerektirir; 307 → /giris?next=..."
+  },
+  {
+   "route": "/siparis/[orderNo]",
+   "auth": true,
+   "note": "Giriş gerektirir; 307 → /giris?next=..."
+  }
+ ],
+ "productRoutes": "87 adet /urun/<slug> — bkz. urunler.json, metinler sayfalar/urun/"
+}

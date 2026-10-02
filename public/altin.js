@@ -1,11 +1,11 @@
-/* Tempo Altın bölümü — canlı fiyatlar, hesaplama, açık/kapalı.
+/* Tempo Altın — canlı fiyatlar, hesaplama, tema, açık/kapalı.
    Veri: tempoaltin.com/api/fiyatlar (server.mjs /api/altin/fiyatlar olarak aktarır)
      { updatedAt, quotes: [{ key, name, buy, sell, changePct }] }  — 20 kalem
    Gruplar (sitedeki sıra korunur):
      gram   HAS_ALTIN GRAM_ALTIN AYAR22 AYAR18 AYAR14
      ziynet CEYREK YARIM TAM ATA RESAT IKIBUCUK BESLI GREMSE
      diger  GUMUS PLATIN PALADYUM
-   USD/EUR/GBP/CHF de geliyor ama Döviz bölümünün işi; burada gösterilmez.
+   USD/EUR/GBP/CHF de geliyor ama Tempo Döviz'in işi; burada gösterilmez.
    Biçimleme yardımcıları app.js'den (window.TempoApp). */
 
 (() => {
@@ -77,6 +77,8 @@
       durum.guncelleme = v.updatedAt ? new Date(v.updatedAt) : null;
       durum.sonBasari = new Date();
       durum.hata = false;
+      // magaza.js ürün fiyatı formülü (yedek) ve vitrindeki Has Altın için dinler
+      document.dispatchEvent(new CustomEvent("altin-kotasyon", { detail: { kotasyon: v.quotes, guncelleme: durum.guncelleme } }));
       oneCiz();
       listeCiz();
       hesapla();
@@ -89,16 +91,12 @@
   }
   durumBtn.addEventListener("click", fiyatlariCek);
 
-  // Site 60 sn'de bir güncelliyor; 30 sn'de bir sormak yeter. Yalnızca Altın
-  // bölümü açıkken ve uygulama öndeyken.
+  // Site 60 sn'de bir güncelliyor; 30 sn'de bir sormak yeter. Yalnızca
+  // uygulama öndeyken.
   let sayac = null;
   function sayacBaslat() { clearInterval(sayac); sayac = setInterval(fiyatlariCek, 30000); }
   function sayacDurdur() { clearInterval(sayac); sayac = null; }
-  document.addEventListener("bolum", (e) => {
-    if (e.detail === "altin") { fiyatlariCek(); sayacBaslat(); } else sayacDurdur();
-  });
   document.addEventListener("visibilitychange", () => {
-    if (T.bolum !== "altin") return;
     if (document.hidden) sayacDurdur(); else { fiyatlariCek(); sayacBaslat(); }
   });
 
@@ -187,7 +185,7 @@
       return;
     }
     // Müşteri TL verip altın alıyorsa SATIŞ fiyatı, altın verip TL alıyorsa ALIŞ fiyatı
-    // (Döviz bölümüyle aynı mantık).
+    // (Tempo Döviz'le aynı mantık).
     const fiyat = tlden ? q.sell : q.buy;
     const karsilik = tlden ? n / fiyat : n * fiyat;
     sonuc.dataset.deger = String(karsilik);
@@ -198,16 +196,15 @@
       : `<b>1 ${birim} ${ad} = ${fmt2.format(fiyat)} TL</b> alış fiyatı üzerinden. Geri alışta ürünün durumu ve sertifikası dikkate alınır.`;
   }
 
-  // ---------- Aydınlat / karart (Altın'a özel; varsayılan koyu, site gibi) ----------
+  // ---------- Aydınlat / karart (varsayılan koyu, site gibi) ----------
   const temaBtn = $("#altin-tema");
   function temaUygula(acik) {
     if (acik) document.documentElement.dataset.temaAltin = "acik"; else delete document.documentElement.dataset.temaAltin;
     try { acik ? localStorage.setItem("tema-altin", "acik") : localStorage.removeItem("tema-altin"); } catch {}
-    if (T.bolum === "altin") $("#tema-rengi").setAttribute("content", acik ? "#f4efe6" : "#14110c");
+    $("#tema-rengi").setAttribute("content", acik ? "#f4efe6" : "#14110c");
   }
   try { if (localStorage.getItem("tema-altin") === "acik") temaUygula(true); } catch {}
   temaBtn.addEventListener("click", () => temaUygula(document.documentElement.dataset.temaAltin !== "acik"));
-  document.addEventListener("bolum", (e) => { if (e.detail === "altin" && document.documentElement.dataset.temaAltin === "acik") $("#tema-rengi").setAttribute("content", "#f4efe6"); });
 
   // ---------- İletişim: şu an açık mı? (Tempo Altın: hafta içi 09–18, cumartesi 09–15) ----------
   function acikMi() {
@@ -227,6 +224,7 @@
     if (e.detail === "iletisim") acikMi();
   });
 
-  // Adres doğrudan #altin/... ile açıldıysa "bolum" olayı bizden önce atılmış olabilir
-  if (T.bolum === "altin") { fiyatlariCek(); sayacBaslat(); }
+  // Giriş ekranı oynarken fiyatlar gelsin; giriş sönünce hazır olsun
+  fiyatlariCek();
+  sayacBaslat();
 })();

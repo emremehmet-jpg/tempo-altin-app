@@ -1,84 +1,59 @@
-# TEMPO DÖVİZ UYGULAMASI — DURUM
+# TEMPO ALTIN UYGULAMASI — DURUM
 
 > Projenin canlı hafızası. Her oturumun başında okunur, her anlamlı işten
 > sonra güncellenir.
 
 **Son güncelleme:** 2 Ekim 2026 (TSİ)
-**Durum:** Uygulama iki bölümlü (Döviz + Altın); kapı, parçalı logolar, Al/Sat,
-tema düğmesi, ikon hepsi Emre'nin onayından geçti ("tamamdır"). Oturum kapandı;
-sıradaki konu **yayına alma** (arkadaşına link) — seçenekler bölüm 7'de, karar yok.
+**Durum:** Tempo Altın, Döviz'den AYRI bir uygulama (port 3200). 2 Eki (4):
+tempoaltin.com'un içeriği uygulamaya gömüldü — vitrin, 87 ürün, 14 kategori,
+ürün sayfaları (sitenin gerçek fiyatıyla), bütçe/hediyelik, hizmetler, kampanyalar,
+11 sözleşme. **Sepet ve ödeme SİTEDE** (Emre'nin kararı, aşağıda Kararlar).
+Emre'nin telefonda denemesi bekleniyor.
 
 ## 1. NE BU?
 
-tempodoviz.com + tempoaltin.com'un **müşteriye dönük** ortak telefon
-uygulaması. Tek uygulama, iki bölüm (19 Eyl 2026'dan beri):
+tempoaltin.com'un **müşteriye dönük** telefon uygulaması (PWA). Kardeş proje
+`~/Desktop/tempo-doviz-app` (Tempo Döviz, port 3100; github tempo-doviz-app).
+Bu klasör onun kopyasından türedi (github.com/emremehmet-jpg/tempo-altin-app);
+2 Eki 2026'da kapı, Döviz bölümü ve Tempo Lens çıkarıldı, yalnız Altın kaldı.
 
-- **KAPI** — açılış ekranı (Emre'nin tarifi, 19 Eyl ikinci sürüm): arka plan
-  Emre'nin verdiği lacivert→altın degrade (`public/kapi/zemin.jpg`, sol altta
-  TEMPO DÖVİZ logosu görselin içinde; `left center` konumlu ki kesilmesin).
-  Ortada **Emre'nin logo görseli** (`public/kapi/logo.png`, 1024 kare, şeffaf;
-  kaynak `marka/o-altin-cerceve-1024.jpg`, açık zemini `arac/logo-ayir.mjs`
-  ile atıldı — Brave/CDP canvas taşkın doldurma; ölçüler: merkez 511,5/512,
-  dış R 291, iç r 155, boşluklar 144–153° ve 324–333°). Kapıda `saturate(1.25)
-  contrast(1.12)` ile canlandırılır (Emre: "daha canlı ve net"). **KARAR (Emre):
-  logo değiştirilmez, görselin kendisi kullanılır** — SVG çizim denendi,
-  istenmedi. **2 Eki 2026'dan beri:** `arac/kanat-ayir.py` logo.png'yi İKİ AYRI
-  görsele böler (`kapi/kanat-doviz.png`, `kanat-altin.png`; kanatlar pikselde
-  zaten ayrı iki parça → bağlı bileşen etiketi). Aynı adımda 2× büyütme +
-  keskinleştirme, kenar sızıntısı temizliği, canlılık filtresi ve gölge
-  görsele işlenir. Görseller 1024 tuvalin 150–874 karesi (CSS'te %14,648 /
-  %70,703). **TUZAK:** CSS `filter` dönen katmandayken iPhone logoyu bulanık
-  çiziyordu → filtre CSS'ten kalktı, görsele işlendi. **TUZAK:** eski
-  `clip-path` zikzak bölmesi (`arac/kanat-kes.mjs`, artık kullanılmıyor) bir
-  kanadın ucunu geride bırakıyordu. Dokunma: `#kapi-donen` tıklamasında açı
-  hesaplanır (148,5°–328,5° arası Döviz). Python aracı için pillow+numpy+scipy
-  gerekir (sistem python'unda yok; venv kur). Açılışta 1,5 sn'de bir tur döner; sonra çemberin DIŞ
-  kenarında kavisli **DÖVİZ** (sol-üst) / **ALTIN** (sağ-alt) yazıları belirir
-  (`<textPath>`, 1024 viewBox, yarıçap 312 / 342). Dokunulan kanat **ortasından
-  tutulup kendine bir kez çekilir** (Emre'nin tarifi, 2 Eki): hafif basılır,
-  dışa kayarak büyür (sana gelir), söner — 750 ms, ağırlık merkezi `--ox/--oy`,
-  dışa yön `--yx/--yy`; iki kanat birebir simetrik. Öbürü yerinde küçülüp söner.
-  480 ms'de kapı söner (350 ms), bölüm belirir. Üst çubuktaki markaya dokununca kapıya dönülür (dönüş tekrarlanmaz).
-  Adres: `#` kapı, `#doviz/kurlar`, `#altin/fiyatlar`.
-- **DÖVİZ bölümü** — Kurlar, Hesapla, **Al/Sat** (ortadaki büyük sekme: 2 Eki'den
-  beri dairesiz, tek başına TEMPO O'su — `marka/tempo-o.png` maskesi, marka rengi), O Gün, İletişim + sitedeki kayan kur bandı + son iki hane mavi.
-  **Tempo Lens** sekmede değil; Kurlar'ın altındaki karttan açılır (Emre, 19 Eyl).
-  Üst çubuk sitedeki gibi beyaz, sol üstte **TEMPO DÖVİZ | 1988** logosu:
-  üç maske parçası (`public/marka/tempo-yazi/o/bant.png`, `arac/logo-parcala.mjs`
-  ile Emre'nin `marka/logo-yatay-doviz-2400.png`'sinden kesildi; currentColor
-  ile boyanır → koyuda beyaz). **O parçası 3 sn'de bir 0,45 sn'de hızlı bir tur
-  dönüp bir kez zıplar** (`@keyframes oZipla`, linear; Emre "ağır dönüyor" dedi,
-  hızlandırıldı). **Altın üst çubuğu da aynı logo**, altın renkte: TEMP + O
-  Döviz parçalarından (aynı şekil, 2400 px), bant `altin-bant.png`
-  (tempoaltin.com logosundan, `logo-parcala.mjs ... altin`). Sağda **aydınlat/karart** düğmesi:
-  `html[data-tema]` = acik|koyu, localStorage'da; yoksa sistem tercihi.
-  Yalnız Döviz'i etkiler.
-  **Al/Sat:** uygulama işlem yapmaz — yön (alıyorum → Tempo SATIŞ kuru /
-  satıyorum → ALIŞ kuru), para, tutar → TL karşılığı; tek eylem **"Arayıp
-  teyit edin"** (Emre: WhatsApp'tan talep diye bir şey yok, kaldırıldı);
-  havale/EFT adımları.
-- **ALTIN bölümü** — tempoaltin.com dili: sıcak siyah #14110c, altın #d5aa45,
-  Instrument Serif başlıklar, kuruş altın renkte. Varsayılan koyu (site de
-  öyle açılıyor); üst çubukta kendi **aydınlat/karart** düğmesi var
-  (`html[data-tema-altin="acik"]` → sitenin krem paleti; localStorage
-  `tema-altin`; Döviz'in seçiminden bağımsız). Sekmeler: Fiyatlar (Gram / Ziynet / Gümüş·Platin, üstte Has
-  Altın mührü), Hesapla (TL ↔ gram/adet; TL→altın SATIŞ, altın→TL ALIŞ),
-  Mağaza (site kategorilerine ve hizmetlerine köprü; sipariş sitede),
-  İletişim (saatler 09–18 / 09–15, siteden).
-  Tema değişkenleri `body[data-bolum="altin"]` üzerinde; aynı bileşenler
-  (kart, liste, segment, sekme) iki bölümde de kullanılır.
-
-PWA olarak yapıldı:
-iPhone'da Safari → Paylaş → "Ana Ekrana Ekle" ile kendi ikonuyla, tam ekran,
-App Store'suz kuruluyor. `~/Desktop/döviz-takip paneli` (iç izleme aracı)
-ile **ilgisi yok**; o ayrı proje.
+- **GİRİŞ** — `#giris`: sıcak siyah zemin, ortada Emre'nin logosu
+  (`marka/logo-altin-yatay-2400.png`, 2400×782; `arac/logo-parcala.mjs ... altin`
+  ile `public/marka/altin-yazi/o/bant.png` maskelerine bölündü — Döviz logosuyla
+  piksel piksel aynı geometri). Logo .6 sn'de belirir; O .65 sn'de başlayıp .75 sn'de
+  bir tur + bir zıplama yapar (`@keyframes girisO`, üst çubuktaki `oZipla`'nın tek
+  seferliği, zıplama O yüksekliğinin %30'u); 1,9 sn'de giriş söner (350 ms).
+  Dokununca hemen geçer. Bant içindeki "ALTIN | 1988" logodaki gibi beyaz: maske
+  deliğinin arkasında beyaz şerit (`.giris-bant-zemin`). Fiyatlar giriş sırasında çekilir.
+- **Üst çubuk** — aynı parçalı logo (altın), O 3 sn'de bir döner+zıplar; logoya
+  dokununca Fiyatlar. Sağda aydınlat/karart (`html[data-tema-altin="acik"]` krem,
+  localStorage `tema-altin`; varsayılan koyu) ve canlı durum rozeti.
+- **Sekmeler** — Vitrin · Ürünler · Fiyatlar · Hesapla · Daha. Üst çubukta sepet
+  simgesi (tempoaltin.com/sepet açar).
+  - **Vitrin** (`/`): sitenin ana sayfası — kahraman + canlı Has Altın, 6 slayt (7 sn),
+    8 ürünlük vitrin, bütçe formu, özel gün çipleri, güven kartları, kategori kartları,
+    Düzenli Birikim, kurumsal blok.
+  - **Ürünler** (`#urunler[/kategori]?sirala=&filtre=&q=`): ana + alt kategori çipleri,
+    sıralama (Önerilen/gram/fiyat), Kampanyalı/Stokta, arama (3+ haneli sayı → bütçe).
+  - **Ürün** (`#urun/<slug>`): galeri, fiyat, ₺/gr, geri alış, gramaj varyantları,
+    kampanya, paylaş, fiyat alarmı (site), ürün bilgileri tablosu, yasal bloklar, benzer ürünler.
+    "Sepete ekle — tempoaltin.com ↗" ürünün sitedeki sayfasını açar.
+  - **Fiyatlar / Hesapla**: eskisi gibi (altin.js).
+  - **Daha** (`#daha`): Hesabım/Sepetim/Üye ol (site), hizmetler, alışveriş, kurumsal, 11 sözleşme.
+  - Dinamik sayfalar: `#butce`, `#hediyelik`, `#hizmetler`, `#gel-al`, `#vadeli-altin`
+    (canlı örnek indirim), `#duzenli-birikim` (simülatör; "Bu planı kur" siteye),
+    `#hesaptan-fiziki-altin` (form sitede), `#kampanyalar` (kalan gün), `#kargo-ve-teslimat`,
+    `#hakkimizda`, `#siparis-takip` (sorgu sitede), `#sozlesme/<slug>`, `#iletisim`.
+  - Eski adresler: `#altin/...` → aynı ekran, `#magaza` → Ürünler.
+- tempoaltin.com dili: sıcak siyah #14110c, altın #d5aa45, Instrument Serif
+  başlıklar, kuruş altın renkte, gövde Anek Latin.
 
 ## 2. NASIL ÇALIŞTIRILIR
 
 - `Başlat.command`'a çift tıkla **veya** `node server.mjs` (paket kurulumu yok).
-- Mac: http://localhost:3100 · Telefon (aynı Wi-Fi): http://192.168.1.105:3100
-  (IP değişirse sunucu açılışta yenisini yazar).
-- Port 3100 — 3000 iç panelde kullanılıyor, çakışmasın diye.
+- Mac: http://localhost:3200 · Telefon (aynı Wi-Fi): http://<ip>:3200
+  (2 Eki: 192.168.1.116; sunucu açılışta güncelini yazar). https: 3201.
+- Port 3200 — Döviz uygulaması 3100'de, iç panel 3000'de; hepsi yan yana çalışır.
 
 ## 3. VERİ KAYNAĞI
 
@@ -86,10 +61,9 @@ Sitenin kendi API'si; uygulama hiçbir veri üretmiyor.
 
 | Uç | Ne verir | Not |
 |---|---|---|
-| `/api/rates/live` | 8 TL paritesi + 6 çapraz; alış, satış, değişim %, validFrom | 20 sn'de bir çekilir (site de öyle) |
-| `/api/rates/history?para=USD-TRY&gun=2` | 48 saatlik değer dizisi | kart açılınca; 5 dk önbellek |
-| `/api/tcmb/gecmis?parite=USD&gun=YYYY-MM-DD` | TCMB o gün alış/satış | `birim` alanına dikkat: JPY 100 birim üzerinden |
-| `/api/altin/fiyatlar` → **tempoaltin.com**/api/fiyatlar | `{updatedAt, quotes:[{key,name,buy,sell,changePct}]}` 20 kalem | 30 sn'de bir, yalnız Altın bölümü açıkken. Anahtarlar: HAS_ALTIN GRAM_ALTIN AYAR22/18/14 CEYREK YARIM TAM ATA RESAT IKIBUCUK BESLI GREMSE GUMUS PLATIN PALADYUM USD EUR GBP CHF. Geçmiş ucu YOK (404). |
+| `/api/altin/urun-fiyatlari` → **tempoaltin.com**/arama?q=a (HTML) | `{okunan, zaman, fiyatlar:{slug:{satis, gramBasi, alis, tukendi}}}` 87 ürün | 60 sn önbellek. Sitede ürün fiyatı için JSON uç YOK (fiyatlar sunucuda HTML'e basılıyor) → `server.mjs urunFiyatlariOku` kart kartı okur. Okunamazsa (biçim değişti) uygulama formüle düşer. |
+| `/api/altin/gorsel?u=/urun/..&w=384\|640\|1080` → /_next/image | sitenin küçültülmüş görseli (webp) | 6 sa; yalnız /urun/ ve /marka/ yolları |
+| `/api/altin/fiyatlar` → **tempoaltin.com**/api/fiyatlar | `{updatedAt, quotes:[{key,name,buy,sell,changePct}]}` 20 kalem | 30 sn'de bir, uygulama öndeyken. Anahtarlar: HAS_ALTIN GRAM_ALTIN AYAR22/18/14 CEYREK YARIM TAM ATA RESAT IKIBUCUK BESLI GREMSE GUMUS PLATIN PALADYUM USD EUR GBP CHF. Geçmiş ucu YOK (404). |
 
 **Tempo Altın sitesi notu (19 Eyl):** Next.js e-ticaret (87 ürün, alış+satış).
 Ürün fiyatı (1 gr külçe 7.479 ₺) ≠ API has altın (6.831 ₺): ürüne işçilik/
@@ -98,255 +72,105 @@ fiyatı için siteye köprü. Sitedeki telefon/vergi no yer tutucu (000…), o
 yüzden Altın iletişimde Döviz'in numaraları kullanıldı; adres aynı (Mahir İz 18/1A).
 
 **Tuzak — CORS:** API yalnızca kendi adresinden çağrıya izin veriyor. Bu
-yüzden `server.mjs` `/api/*` isteklerini siteye aktarıyor. Uygulama ileride
-sitenin altına (`tempodoviz.com/app`) taşınırsa bu katmana gerek kalmaz;
+yüzden `server.mjs` `/api/altin/*` isteklerini siteye aktarıyor (diğer `/api/` 404).
+Uygulama ileride sitenin altına (`tempoaltin.com/app`) taşınırsa bu katmana gerek kalmaz;
 `public/` klasörü olduğu gibi kopyalanabilir.
 
-## 3b. TEMPO LENS (kamerayla fiyat çevirme)
+## 3b. SİTENİN İÇERİĞİ (2 Eki 2026 araştırması)
 
-Emre'nin daha önce tasarladığı akış. `public/lens/` altında.
-
-**KARAR (Emre, 12 Eyl):** Sembol aranmaz. Kullanıcı PARİTEYİ seçer
-(EUR→TL, USD→TL, EUR→USD, USD→EUR; 14 Eyl'de TL→EUR, TL→USD eklendi); kamera
-gördüğü **her sayıyı** kaynak para sayar ve çevirir. Elenenler: %'li, saat
-(12:30), yıl gibi 4 haneliler (1900–2099; kaynak TL ise gösterilir — TL'de
-o aralık olağan fiyat), 7+ hane, güveni <70 satırlar, karenin %1,2'sinden
-alçak satırlar. TL→döviz çevirisi de Tempo SATIŞ kuruyla (tutar / satış);
-Hesapla ekranıyla tutarlı. Emre alış istersek `cevir` ters dalı değişir.
-
-**MOTOR: PaddleOCR (PP-OCRv4) + ONNX Runtime Web** — `vendor/paddle/`
-(paddle-ocr.js 10 MB, det 4,7 MB, rec 10,8 MB) + `vendor/ort/` (14 MB).
-İlk açılışta ~40 MB iner, `immutable` önbellek. `arac/paddle-derle.sh`
-yeniden derler (esbuild; tarif içinde).
-
-**Neden Tesseract'tan geçildi (12 Eyl, Emre'nin kareli defter testi):**
-Tesseract spiral halkaları ve çizgileri "1" okuyordu, el yazısı 32/44/55'i
-"4, 5, 253" yapıyordu. Aynı sentetik görselde ölçüm:
-Tesseract → `"on" "WE" "Tn" "Hm" "NC" "22" "44" "55"`;
-Paddle → `"32"(100) "44"(100) "55"(100)`, çöp yok. Menü, küçük punto (5/5),
-tek haneli 9 da tam. Paddle satır bazlı döner ("Carbonara 18"); sayı satır
-metninden regex'le çıkarılıp kutu içinde karakter oranıyla konumlanır.
-Paddle görüntüyü 32'nin katına büyütür; kutular geri ölçeklenir (`oku`).
-
-**Kutu bölme (14 Eyl, Emre'nin telefon testi):** Gerçek defterde 44/55 gibi
-alt alta sıkışık sayıları Paddle'ın algılayıcısı TEK uzun kutuda birleştirip
-"345"/"14" okuyordu; olasılık eşiği (0,3–0,7) hiçbir şey değiştirmedi. Çözüm
-`lens.js kutulariBol`: algılama ve tanıma ayrı çağrılır; aradaki her kutunun
-mürekkep satır profili çıkarılır (koyu/açık zemin otomatik), boş yatay
-şeritten bölünür, parçalar ayrı ayrı tanınır. Sentetik "zor defter" (sıkışık,
-eğik, bulanık): önce `"345"(65)` → şimdi 32/44/55 hepsi 100.
-
-**Paket yamaları (`arac/paddle-derle.sh`, sed ile, grep'le doğrulanır):**
-eşik 0,03→0,3 (`window.TEMPO_OCR.esik` ile ayarlanır); afAfRec (aynı hizadaki
-kutuları tek satıra birleştirme) kapalı; dik kutuyu 90° çevirme kapalı (tek
-haneli "1" dik kutu verir, çevrilince çöp); `motor.detection` /
-`motor.recognition` ve `ImageRaw` dışa açık. **TUZAK:** vendor "immutable"
-önbellekli; paket her derlendiğinde `lens.js PAKET_SURUM` artırılmalı (şimdi 2),
-yoksa telefon/test tarayıcısı eski paketi kullanır (bunu yaşadık).
-
-**Sayı eleme ekleri (14 Eyl):** antet/iletişim satırları (@, www, .com, Tel,
-No:, 0'la başlayan telefon) atlanır; 0 ile başlayan tam sayı (0216) atlanır;
-kare kenarına dayanan kutu (kesik sayı "1" okunuyordu) atlanır. Rozetler artık
-izlenen sayıya bağlı kalıcı öğe (her turda yeniden yaratılıp göz kırpmıyor).
-
-**Ekran düzeni:** üst bant (parite + "1 EUR = 56,22 TL · Tempo satış" +
-sayaç — Emre kur bilgisini görüntünün DIŞINDA istedi), orta canlı görüntü +
-rozetler (yalnız karşılık: "1.798 TL"), alt bant (parite çipleri, deklanşör).
-
-**Canlı döngü:** deklanşörsüz, tek geçiş (CANLI_KENAR 1000). Kırpma: yatayda
-kameranın tam karesi, dikeyde bantlar dışı. Kamera açılınca ilk okumaya kadar
-2,5 sn beklenir (SABITLENME_MS; iPhone odak/zoom oturuyor), zoom destekliyorsa
-1x'e çekilir. Her turda 24×24 küçük kare öncekiyle kıyaslanır (HAREKET_ESIK 9):
-hareket varsa okunmaz ("Telefonu sabit tutun…"), 1,2 sn sürerse rozetler
-kaldırılır. Parite değişince canlı rozetler sıfırlanır, sonraki tur yeniden
-kurar (Emre: "önceki paritenin fiyatı kalmasın"). Kayıp turu 2; aynı metin
-örtüşmese de yakınsa aynı sayı sayılır (kamera kayınca çift rozet çıkıyordu). Kareler arası izleme
-(`izlemeGuncelle`): örtüşme ≥%40 aynı sayı; okumalar güven puanıyla oylanır,
-en çok puan gösterilir; berabere → mevcut kalır; 3 tur görünmeyen silinir.
-"Uzun okuma hemen kazanır" kuralı 14 Eyl'de KALDIRILDI (tek karede "44"→"444"
-kalıcı oluyordu); tek istisna kuruş tamamlama ("18" → "18,50").
-Deklanşör: kareyi dondurur (1600 px), liste çıkarır.
-
-**Denenip vazgeçilenler (Tesseract dönemi, kayıt için):** rakam kısıtı
-(whitelist) harfleri rakama zoruyordu; gri/kontrast/eşik ön işleme fayda
-etmedi; PSM 11/6 dönüşümü ve 2000 px büyütme geçişi Paddle'la gereksizleşti.
-
-### Test altyapısı (tuzaklar dahil)
-
-- `arac/test-surucu.mjs`: Brave'i CDP ile sürer, GERÇEK zamanda bekler,
-  `#log` metnini + ekran görüntüsünü alır. `node arac/test-surucu.mjs <url>
-  <sn> <png> [y4m]`. `arac/y4m-uret.py` PNG'den sahte kamera akışı üretir.
-- **TUZAK:** `--virtual-time-budget` ile OCR/kamera testi güvenilmez —
-  zamanlayıcılar hızlanıyor, kamera "açılmıyor" gibi görünüyor, ekran
-  görüntüsü erken alınıyor. Saatlerce bunu kovaladık; CDP sürücüsü kullan.
-- **TUZAK:** Site API'si IP başına istek sınırı koyuyor (429). server.mjs
-  artık yanıtları önbellekliyor (live 15 sn, history 5 dk, tcmb 1 sa) ve
-  429'da son bilinen yanıtı `x-tempo-bayat: 1` başlığıyla veriyor.
-- Test sayfaları `arac/test-sayfalari/` içinde durur; kullanmak için
-  `public/_test/`e kopyalanır, bitince silinir (yayına gitmesin).
-  `oku.html`: sentetik sahneler (defter / zor defter / menü) çizer, uygulamanın
-  gerçek `window.TempoLens.oku` + `sayilariBul`ünü iframe üzerinden çağırır,
-  satırları ve bulunan sayıları loglar (`?sahne=zor`, `?dataurl=1` PNG döker).
-  `canli.html`: uygulamayı 390 px iframe'de (`allow="camera"`) açar, "Kamerayı
-  Aç"a basar, rozet metinlerini saniye saniye loglar; y4m ile:
-  `node arac/test-surucu.mjs http://localhost:3100/_test/canli.html 25 ss.png zor.y4m`.
-  `zor-defter.png` hazır zor sahne (y4m-uret.py ile akışa çevrilir).
+`kaynak/tempoaltin-site/`: RAPOR.md (sayfalar, ürünler, fiyat formülleri, sepet/ödeme,
+iyzico, üyelik), urunler.json, kategoriler.json, endpoints.json (server action'lar),
+sayfalar/*.md (her sayfanın tam metni). `python3 arac/katalog-uret.py` bundan
+`public/veri/katalog.json` (87 ürün, 14 kategori, fiyat formülü) ve
+`public/veri/sozlesmeler/*.md` üretir. Site ürün ekler/çıkarırsa araştırma tazelenip
+betik yeniden çalıştırılır (fiyatlar zaten canlı).
+- **Fiyat formülü (yedek):** külçe `HAS.sell × gram × saflık × (1+marj)`, gümüş
+  `GUMUS.sell × gram × (1+marj)`, bilezik `HAS.sell × 0,916 × gram × 1,05`, ziynet
+  `kot.sell × (1+marj)`, geri alış `kot.buy × … × 0,99`. 85/87 kuruşu kuruşuna tuttu.
+- **Sepet** sitede `tk_cart` çerezi + Server Action (`addToCartAction`…); başka adresten
+  eklenemez (Next.js Origin denetimi + çerez tempoaltin.com'da). **Ödeme** `/odeme`
+  (giriş ister), iyzico (CSP frame-src/form-action *.iyzipay.com), dönüş `/api/odeme/callback`.
+- Sitedeki telefon/vergi/MERSİS yer tutucu (000…); uygulamanın kendi sayfalarında
+  İletişim'deki numara kullanıldı, sözleşme metinleri sitedeki gibi (yer tutucularıyla) bırakıldı.
 
 ## 3c. YEREL HTTPS (telefonda canlı kamera için)
 
-Tarayıcı kamerayı yalnızca https'te açar. Tünel araçları (cloudflared)
+Service worker (çevrimdışı açılış) yalnızca https'te çalışır. Tünel araçları (cloudflared)
 indirilemedi (izin denetleyicisi engelledi); onun yerine **kendi kök
 sertifikamız**: `sertifika/uret.sh` (openssl) → `ca.crt` + `server.crt`
-(SAN: localhost, <mac>.local, Wi-Fi IP; 825 gün). Sunucu 3101'de https.
+(SAN: localhost, <mac>.local, Wi-Fi IP; 825 gün). Sunucu 3201'de https.
 
-Telefon tarafı BİR KEZ: `http://<ip>:3100/kurulum` sayfası adım adım anlatıyor
+Telefon tarafı BİR KEZ: `http://<ip>:3200/kurulum` sayfası adım adım anlatıyor
 (profil indir → Ayarlar'da yükle → Genel → Hakkında → Sertifika Güven
-Ayarları → aç). Sonra `https://finnovapc2-macbook-air.local:3101`.
+Ayarları → aç). Sonra `https://<ip>:3201`.
 `Başlat.command` her açılışta sunucu sertifikasını tazeler (IP değişse de
 kök aynı kaldığı için telefonda tekrar bir şey yapılmaz).
 
 ## 4. DOSYALAR
 
 ```
-server.mjs            geliştirme sunucusu + API aktarımı (bağımlılık yok)
+server.mjs            geliştirme sunucusu + /api/altin aktarımı (bağımlılık yok), port 3200/3201
 Başlat.command        çift tıkla çalıştır
-public/index.html     kapı + Döviz bölümü (5 ekran) + Altın bölümü (4 ekran)
-public/app.css        görünüm; iki paletin değişkenleri sitelerin CSS'inden, kapı, bant, altın stilleri
-public/app.js         kabuk (kapı/bölüm/ekran yönlendirme, tema rengi) + Döviz davranışı
-public/altin.js       Altın bölümü: fiyat çekme, liste, hesaplama, açık/kapalı
-public/manifest.webmanifest, sw.js   PWA
-public/ikon/          ana ekran ikonları (lacivert zemin, beyaz "O")
-public/lens/          Tempo Lens: lens.js, lens.css, vendor/ (PaddleOCR + ORT)
-arac/                 paddle-derle.sh, test-surucu.mjs, y4m-uret.py, logo-ayir.mjs (zemin temizleme),
-                      logo-parcala.mjs (yatay logo → TEMP/O/bant maskeleri), kanat-kes.mjs (kapı kanat çokgenleri), test-sayfalari/
-public/marka/         tempo-yazi/o/bant.png (döviz), altin-bant.png — maske parçaları
-public/kapi/          zemin.jpg (degrade arka plan), logo.png (şeffaf logo)
+public/index.html     giriş + Altın (4 ekran)
+public/app.css        görünüm (paylaşılan bileşenler + Altın paleti + giriş)
+public/app.js         kabuk: giriş, adres yönlendirme (statik + dinamik ekran), sayı yardımcıları (window.TempoApp)
+public/altin.js       kotasyon çekme (altin-kotasyon olayı), fiyat listesi, hesaplama, tema, açık/kapalı
+public/magaza.js      vitrin, ürünler, ürün, bütçe, hediyelik, hizmetler, kampanyalar, sözleşmeler
+public/veri/          katalog.json + sozlesmeler/*.md (arac/katalog-uret.py üretir)
+public/manifest.webmanifest, sw.js   PWA (SURUM tempo-altin-v2)
+public/marka/         altin-yazi/o/bant/tam.png — logo maske parçaları
+public/ikon/          ana ekran ikonları (HENÜZ Döviz'den kalma iki kanatlı logo)
 public/kurulum.html   telefon https kurulum rehberi (/kurulum)
 sertifika/            uret.sh + üretilen kök/sunucu sertifikaları (paylaşma)
-marka/                logo dosyaları: logo-yatay (döviz), logo-altin-yatay, o-simge-512, o-simge-altin-180
-                      ("O" iki markada aynı şekil; uygulamada favicon.png maske + renk ile çizilir)
+arac/                 logo-parcala.mjs (yatay logo → maske), katalog-uret.py, test-surucu.mjs (Brave CDP
+                      ekran görüntüsü + konsol hataları; port 9343, Döviz'inki 9333 — aynı anda çalışınca karışıyordu)
+kaynak/tempoaltin-site/  sitenin araştırma verisi (bkz. 3b)
+marka/                logo-altin-yatay-2400.png (Emre, 2 Eki), eski logo dosyaları
 ```
 
 ## 5. KARARLAR
 
-- **PWA, native değil.** App Store'suz kurulum + siteyle aynı kod tabanı.
-  Sonra istenirse Capacitor ile sarılıp mağazaya da çıkar.
-- **Çerçevesiz (vanilla) HTML/CSS/JS.** Build adımı yok; `public/` doğrudan
-  sitenin altına konabilsin diye.
-- **Hesaplama yönü ve kur:** TL → döviz büronun SATIŞ kuru, döviz → TL ALIŞ
-  kuru (müşteri gözüyle doğru olan bu). O Gün ekranı TCMB satış kullanır.
-- **Alarm / bülten / müşteri kabul** v1'de siteye köprü; sitede zaten
-  çalışıyor, kopyalamak yerine bağlandı.
-- Marka: lacivert #1B2F52, vurgu #7DA5E3, yazı tipi Anek Latin (siteyle aynı).
-- **Döviz bölümü kurumsal kimliğe bağlı (Emre, 2 Eki 2026):** kaynak
-  `~/Desktop/tempokurumsalkimlik/TEMPO-kurumsal-kimlik.pdf` (Sürüm 1.0). Renk:
-  Parliament #1B2F52, antrasit #343A40 başlık, #454B55 gövde, nötr F5F6F8 /
-  DCDFE4 / 787E88 / 12151A, #7DA5E3 yalnız ekranda vurgu (pip, bağlantı, aktif);
-  yükseliş/düşüş #0B7A4B/#C2261F, önce ▲▼ sonra renk. Rakam: daima 4 hane,
-  `%2,45`, büyük rakam Light 300, pip Medium 500, eşit genişlik (tabular-nums
-  gövdede). Tutar `1.250,00 ₺` (TL değil, ince bölünmez boşluk U+202F);
-  kur çifti/etiketlerde "TL" kalır. Başlık Anek Latin wdth 85. Türkçe kesme ’
-  ve “tırnak”. Adres kılavuzdaki gibi: Mahir İz Cad. No: 18-A1, Altunizade —
-  Üsküdar / İstanbul. Saira yalnız logoda (uygulamada yok).
-- **İki marka, tek kabuk (Emre, 19 Eyl):** Döviz açık/lacivert, Altın koyu/altın;
-  kullanıcı bölüm değiştirince marka değişir. Ortak: Anek Latin, "O" logosu,
-  kart/liste bileşenleri. Altın başlıkları Instrument Serif (Google Fonts).
-- Altın'da alarm/sipariş/ürün listesi v1'de siteye köprü (Döviz'deki kararla aynı).
+- **Altın ayrı uygulama, ayrı link (Emre, 2 Eki 2026).** Döviz'le ortak kapı yok.
+- **Sitenin her şeyi uygulamada, ama sepet ve ödeme SİTEDE (Emre, 2 Eki 2026).** Seçenekler
+  sunuldu: (a) sitenin iç arayüzü (server action) üzerinden uygulamada ödeme, (b) siteye
+  API eklemek (kod erişimi gerekir), (c) ödeme sitede — Emre (c)'yi seçti. Sonra "sepet
+  uygulamada" da mümkün olmadığı anlaşıldı (çerez/Origin), Emre "sepet sitede"yi seçti.
+  Uygulama tempoaltin.com/app altına taşınınca sepet ve ödeme uygulamaya alınabilir.
+- Siteye giden her şey `↗` işaretli ve yeni sekmede: sepete ekle, sepet, hesap, üye ol,
+  fiyat alarmı, birikim planı kur, hesaptan fiziki talep formu, sipariş sorgulama, iletişim formu.
+- **PWA, çerçevesiz (vanilla) HTML/CSS/JS**, build yok; `public/` sitenin altına konabilir.
+- **Hesaplama yönü:** TL → altın SATIŞ, altın → TL ALIŞ (müşteri gözüyle).
+- Alarm/sipariş/ürün listesi v1'de siteye köprü. Ürün fiyatı ≠ API fiyatı
+  (işçilik/sertifika); uygulama piyasa fiyatını gösterir.
+- Sitedeki telefon/vergi no yer tutucu → iletişimde Döviz'in numaraları; adres aynı.
 
 ## 6. TUZAKLAR
 
-- Başsız Brave pencereyi en az 500 px açıyor; 390 px telefon görüntüsü
-  almak için sayfa bir iframe'e konularak test edildi.
-- Service worker http://192.168.x.x'te kayıt olmaz (tarayıcı kuralı); yalnızca
-  https veya localhost. Ana ekrana ekleme yine de çalışır.
-- Tarayıcı `<select>` seçili metni kısaltır; para birimi seçicisi bu yüzden
-  tam genişlikte.
+- Başsız Brave pencereyi en az 500 px açıyor; 390 px görüntü için sayfa bir
+  iframe'e konup `arac/test-surucu.mjs` ile çekilir (test sayfası `public/_test/`e
+  konur, bitince silinir).
+- Service worker http://192.168.x.x'te kayıt olmaz; yalnız https veya localhost.
+- Mac'in Bonjour adı değişebiliyor (2 Eki'de `Mac.hgw.local` göründü); telefonda IP'li adres güvenli.
 
 ## 7. SIRADAKİ İŞLER
 
-1. **Emre telefonda dener:** kapı ekranı (renk karışımı, geçiş), Altın bölümü
-   görünümü. Geri bildirime göre düzeltmeler.
-2. ~~Ana ekran ikonu~~ — 19 Eyl: ikon artık Emre'nin logo görseli (`marka/
-   o-altin-cerceve-1024.jpg`, kendi açık zeminiyle; iOS şeffaf ikonu siyaha
-   boyar, o yüzden zeminli hali kullanıldı), uygulama adı "Tempo".
-   `ikon/favicon.png` DOKUNULMADI: üst çubuktaki "O" maskesi olarak kullanılıyor.
-   Telefonda eski ikon görünürse ana ekrandan silip yeniden eklemek gerekir.
-3. Altın'da geçmiş grafik yok (API'de geçmiş ucu yok) — istenirse sunucuda
-   biriktirilir.
-4. Lens (kareli defter/menü testi) — önceki turdan bekleyen.
-5. **Yayına alma (Emre'nin bir sonraki sorusu, 19 Eyl):** uygulama şu an yalnız
-   Emre'nin Wi-Fi'ında açılıyor; başkasına link atılamaz. Seçenekler:
-   (a) sitenin altına `tempodoviz.com/app` — asıl plan, sitenin barındırmasına
-   erişim ister; (b) Cloudflare Pages/Vercel'de deneme adresi — `server.mjs`
-   aktarması küçük bir fonksiyona çevrilir (~yarım saat), önerilen ilk adım;
-   (c) geçici tünel (cloudflared) — Mac açıkken. Uygulama iki siteden veri
-   çektiği için nereye konursa konsun en az bir aktarma katmanı gerekir.
-   Cloudflare hesabı var mı sorulacak.
-6. İsteğe bağlı: aşağı çekince yenileme, alarm/bildirim.
+1. Emre telefonda dener: giriş, vitrin, ürün sayfaları, siteye geçiş (sepete ekle → site).
+2. **Ana ekran ikonu** Altın'a özel değil (Döviz'in iki kanatlı logosu); altın O ile yenilenmeli.
+3. Altın'da geçmiş grafik yok (API'de geçmiş ucu yok) — istenirse sunucuda biriktirilir.
+4. Yayına alma: tempoaltin.com/app veya Cloudflare Pages/Vercel (aktarma küçük fonksiyona).
 
 ## 8. OTURUM GÜNLÜĞÜ
 
-- **2 Eki 2026 (2)** — Git deposu açıldı (github.com/emremehmet-jpg/tempo-doviz-app;
-  sertifika anahtarları .gitignore'da). Döviz bölümü kurumsal kimlik kılavuzuna
-  uyduruldu (bkz. Kararlar): ₺ simgesi, rakam ağırlıkları, başlık wdth 85,
-  durum noktaları kimlik renklerinde, 48 sa değişimde ▲▼, kesme/tırnak, adres.
-  Font Anek Latin değişken (wdth 75–125, wght 100–800). sw SURUM tempo-v9.
-  Kapı zemini değişti (Emre): `marka/02-monogram-story.png` (1080×1350, O desenli
-  lacivert, sol altta TEMPO DÖVİZ) → `public/kapi/zemin.jpg`, `left bottom / cover`;
-  "Kanada dokunun" ipucu logonun üstüne alındı (15vh); kapı tema rengi #16284a.
-  sw SURUM tempo-v10. (Eski lacivert→altın degrade artık kullanılmıyor.)
-  Kapı logosu değişti (Emre): yeni altın O (`marka/o-altin-lacivert-1024.png`,
-  lacivert zeminli). `arac/o-zemin-ayir.py` zemini ayırıp R 281→291 ölçekler →
-  `public/kapi/logo.png`; `arac/kanat-ayir.py` kanatları ayırır ve **Döviz kanadını
-  metalik Parliament'a boyar** (altının parlaklık bantları korunur, renk lacivert
-  rampasından; ana ton #1B2F52). Altın kanadı olduğu gibi. Canlılık filtresi
-  kaldırıldı (yeni altın zaten parlak). Geometri eskisiyle aynı (boşluklar,
-  yazı yarıçapı, dokunma açısı değişmedi); --ox/--oy güncellendi. sw tempo-v11.
-  Python: `python3 -m venv venv && venv/bin/pip install pillow numpy scipy`.
+- **2 Eki 2026 (4)** — tempoaltin.com baştan sona incelendi (alt ajan; yalnız GET; 87 ürün,
+  fiyat formülleri, sepet/ödeme/iyzico, üyelik, 11 sözleşme → kaynak/tempoaltin-site/).
+  Uygulamaya gömüldü: magaza.js (vitrin, ürünler, ürün, bütçe, hediyelik, hizmet sayfaları,
+  birikim simülatörü, kampanyalar, sipariş takip, sözleşmeler), Daha sekmesi, sepet simgesi.
+  server.mjs: /api/altin/urun-fiyatlari (sitenin gerçek fiyatları) + /api/altin/gorsel.
+  Sekmeler Vitrin/Ürünler/Fiyatlar/Hesapla/Daha. 390 px görüntü + gezinme testiyle
+  doğrulandı (sekmeler, sıralama, geri, arama→bütçe, eski adresler), konsol hatasız.
 
-- **2 Eki 2026** — Kapı: logo netleştirildi/canlandırıldı (kanat-ayir.py, filtre
-  görsele işlendi), kanatlar ayrı görsel, yeni "kendine çek" hareketi (iki kanat
-  aynı). Telefon bağlantısı: Mac IP'si .116 oldu, sertifika tazelendi; telefon
-  aynı Wi-Fi'de açamadı — sebep henüz bulunmadı (Emre kontrol edecek).
-  Al/Sat sekmesi: daire kalktı, tek başına TEMPO O'su (Emre). sw SURUM tempo-v8.
-
-- **19 Eyl 2026** — tempoaltin.com incelendi (tüm sekmeler + tasarım: CSS
-  değişkenleri, yazı tipleri, ekran görüntüleri), `/api/fiyatlar` bulundu.
-  tempodoviz.com tasarımı da aynı yöntemle çıkarıldı. Emre'nin tarifiyle
-  uygulama iki bölümlü oldu: kapı ekranı (önce sol lacivert / sağ altın
-  karışımı; sonra Emre'nin görselleriyle dönen SVG logo + kanat seçimi), Döviz bölümü (eski + bant + pip mavi), Altın bölümü (fiyatlar,
-  hesapla, mağaza, iletişim). server.mjs `/api/altin/*` aktarması. 390 px
-  CDP görüntüleriyle doğrulandı; konsol hatasız. Kapı üç sürüm geçirdi:
-  renk karışımı → SVG çizim logo (Emre: "logoyu değiştirme") → Emre'nin
-  görseli, zemini ayrılmış, dıştan kavisli yazılar. Sonra: ana ekran ikonu =
-  logo görseli, ad "Tempo"; Döviz üst çubuğu beyaz + parçalı logo (O dönüp
-  zıplıyor), aydınlat/karart, ortadaki sekme Lens → Al/Sat (WhatsApp talebi
-  kaldırıldı, yalnız "Arayıp teyit edin"). Son tur: Altın'a aynı logo (altın),
-  kapı logosu canlandırıldı, kanat kesimi zikzağa göre düzeltildi. Emre onayladı;
-  yayına alma konuşulacak.
-
-- **14 Eyl 2026** — Emre'nin telefon testi: alt alta 44/55 tek kutuda
-  birleşiyor, antetteki telefon/adres sayı sanılıyor, kenardaki kesik sayı
-  "1" okunuyordu. Kutu bölme (mürekkep profili), paket yamaları (eşik,
-  afAfRec, döndürme kapalı, aşamalar dışa açık), antet/kenar/sıfır elemesi,
-  kalıcı rozetler. Sentetik zor defter + canlı akış testiyle doğrulandı.
-  İkinci tur: "444" için oylama düzeltildi; eski http ikonundan açılınca
-  https adresine götüren sarı bant (index/app.js `guvenli-uyari`, /adres'ten).
-  Üçüncü tur: TL→EUR / TL→USD pariteleri (üç çip grubuna da), yıl filtresi
-  TL'de kapalı, üst bantta "TL → EUR" yazımı. Dördüncü tur (Big Chefs menü
-  testi: çift rozet, açılışta zoom): sabitlenme süresi, hareket algılama,
-  yakın eşleme, parite değişiminde sıfırlama.
-
-- **12 Eyl 2026 (5)** — Emre'nin kareli defter testi çöp üretti → motor
-  PaddleOCR'a geçirildi (ölçümle), Tesseract dosyaları silindi, arac/
-  paddle-derle.sh eklendi.
-- **12 Eyl 2026 (4)** — Üç geçişli döngü (büyütme), güven ağırlıklı oylama,
-  API önbelleği (429), CDP test sürücüsü. İnternet yeniden başlayınca IP
-  .107 oldu, sertifika tazelendi.
-- **12 Eyl 2026 (3)** — Lens canlı tarama + "sadece sayı" kararı; yerel https
-  (öz-imzalı CA) ve /kurulum sayfası; vendor dosyalarına kalıcı önbellek.
-- **12 Eyl 2026 (2)** — Tempo Lens eklendi: 5. sekme, Kurlar'da tanıtım
-  kartı, tam ekran kamera katmanı, OCR + fiyat bulma + rozetler. Tesseract
-  projeye indirildi. Sahte menüyle test: 6/6 doğru.
-- **12 Eyl 2026** — Proje kuruldu. Site incelendi (API'ler, renkler, ikonlar),
-  ikonlar üretildi, 4 ekran yazıldı, başsız tarayıcıda 390 px'te doğrulandı.
+- **2 Eki 2026 (3)** — Altın Döviz'den ayrıldı: kapı, Döviz bölümü, Lens (40 MB
+  vendor) ve ilgili araçlar silindi; server.mjs yalnız tempoaltin.com aktarıyor,
+  port 3200. Emre'nin yeni logosu (2400 px) maske parçalarına bölündü; giriş ekranı
+  eklendi (O bir tur + bir zıplama). 390 px CDP görüntüsüyle doğrulandı.
+  Önceki geçmiş (Döviz + ortak dönem) için `~/Desktop/tempo-doviz-app/DURUM.md`.

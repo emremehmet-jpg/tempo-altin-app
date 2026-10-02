@@ -1,0 +1,37 @@
+{
+ "notes": "Next.js App Router (turbopack). Mutations are Server Actions: POST to the current page URL with header 'Next-Action: <id>' (+ 'Next-Router-State-Tree'), body = RSC-encoded args (encodeReply) or multipart FormData for useActionState forms. Content-Security-Policy connect-src 'self' => no third-party XHR from the browser. Action IDs change on every deploy.",
+ "json_api": [
+  {"method":"GET","path":"/api/fiyatlar","auth":false,"desc":"Live quotes. {updatedAt, quotes:[{key,name,buy,sell,changePct}]} keys: HAS_ALTIN, GRAM_ALTIN, AYAR22, AYAR18, AYAR14, CEYREK, YARIM, TAM, ATA, RESAT, IKIBUCUK, BESLI, GREMSE, GUMUS, PLATIN, PALADYUM, USD, EUR, GBP, CHF. Not called by site JS (prices are server-rendered)."},
+  {"method":"POST (GET -> 400 {\"error\":\"Geçersiz istek\"})","path":"/api/odeme/callback","auth":false,"desc":"Payment provider (iyzico) callback/return URL after 3D Secure / checkout form."}
+ ],
+ "server_actions": [
+  {"name":"addToCartAction","id":"60b5ec882e67821116623ef005d941da5c541f6b3d","args":"(productId, qty)","returns":"{ok, capped?, available?, qty?, error?}","chunk":"0uaugsclfm_8p.js / 2s14m71ys6rs4.js / 3eej68-f43ml4.js","notes":"Server cart; cookie tk_cart (30 gün). After success router.refresh()."},
+  {"name":"setProductQtyAction","id":"6048ac8cd8c602af9d2c8b12819c06ad4963e4a7cf","args":"(productId, qty)","returns":"{ok, qty, capped?, error?}","notes":"Listing compact counter (+/-). qty 0 removes."},
+  {"name":"setQtyAction","id":"60f88d0243222fc750cf94f02dc76ed8afa7e74020","args":"(cartLineId, qty)","notes":"Cart page line qty; 0 = Kaldır. Max = product.available."},
+  {"name":"clearCartAction","id":"003a5196a1433d91585afd746cd80ecd2510d2a4a4","args":"()","notes":"Sepeti boşalt"},
+  {"name":"toggleFavoriteAction","id":"4065c58800ad50cee32e07a87f3d6d5617563ab375","args":"(productId)","returns":"{ok, favorited}","notes":"Requires login, else client redirects to /giris?next=<path>"},
+  {"name":"loginAction","id":"609c4d870d47ee879a2f25d329a9d139cc21a0d9b2","form":["email","password","next?","totp? (only when state.needsTotp)"],"returns":"{error?, ok?, message?, needsTotp?}","notes":"useActionState; progressive-enhancement <form method=POST> with $ACTION_REF hidden fields"},
+  {"name":"forgotPasswordAction","id":"603581d481b5136ccbb439e2aae5d5c2ef931ff32d","form":["email"],"notes":"Sends reset link -> /sifre-sifirla?token=..."},
+  {"name":"resetPasswordAction","id":"60db08495bf7f4966826e18d5f3f7fac1c670318ea","form":["token(hidden)","password (min 8)"]},
+  {"name":"updateProfileAction","id":"60408c956c6d23639c3f20dc145876c84bce65a691","form":["firstName","lastName","phone","smsNotifications(checkbox)","marketing(checkbox)","currentPassword","newPassword(min 8)"],"notes":"/hesap profile form; email & TCKN read-only (TCKN masked 123*****45 or 'İlk siparişte istenir')"},
+  {"name":"signupSendOtpAction","id":"60d674f6e65807309e5bb0e45c7cd561aaed00a010","args":"(dialCode e.g. '90', nationalNumber)","returns":"{ok, phone, demo?(OTP shown in demo mode), error?, registered?}"},
+  {"name":"signupVerifyOtpAction","id":"60e006b5197187823c49c6546318bd4848db8b867d","args":"(phone, code6)","returns":"{ok, token, error?}"},
+  {"name":"signupCheckEmailAction","id":"400978f584051454e50505f08ed5f888c3f6b7b687","args":"(email)","returns":"{ok, email, error?}"},
+  {"name":"signupCompleteAction","id":"4052d21f74d75acb7708b9b132456670327b81fab2","args":"({token,email,firstName,lastName,password,kvkk:boolean,marketing:boolean,next})","returns":"{ok, firstName, email, next, error?}","notes":"Logs user in (sets tk_session) and sends e-mail verification link (/dogrula?token=...)"},
+  {"name":"trackOrderAction","id":"607f42a4e9bbbd273ffb4dd78afa3254e445d027b1","form":["orderNo (TKM… or cargo tracking no)","phone"],"returns":"{error?, order?:{orderNo,createdAt,recipient,city,status,statusLabel,shippingMethod,cargoCompany,trackingNo,shippedAt,paidAt,deliveredAt,deliveryDueAt,deliveryDays,items:[{name,qty,weightGr}],total,events:[{id,status,message,at}]}}"},
+  {"name":"contactAction","id":"6052d005ec5a91904e1821ea155ef59de6508f14e0","form":["website(honeypot, hidden)","name","email","phone?","type: CONTACT|SIPARIS|IADE|DIGER","subject","orderNo?","message(min 10)","kvkk(required)"]},
+  {"name":"hesaptanFizikiTalepAction","id":"60c9c7b7d16d86461f2877667aeb6ac2fd5ece5ca2","form":["fullName","phone","email","bank","gram","delivery: PICKUP|CARGO","note?(max 500)","kvkk(required)"]}
+ ],
+ "not_observable_without_login": ["/odeme checkout actions (create order, lock price, pay)", "/hesap/* actions (addresses, favorites, alarms, birikim plans, kimlik)"],
+ "order_enums": {
+   "status": ["PAYMENT_PENDING","PAID","COMPLIANCE_REVIEW","PREPARING","PACKED","SHIPPED","DELIVERED","COMPLETED","CANCELLED","REFUNDED","PAYMENT_FAILED*"],
+   "shippingMethod": ["CARGO (sigortalı kargo, ücretsiz)","MOTO (moto kurye İstanbul, <200.000 ₺)","PICKUP (Gel Al)","ACCOUNT (hesaba altın havale)"],
+   "birikimFrequency": ["WEEKLY","BIWEEKLY","MONTHLY"],
+   "productKind (from simulator)": ["BULLION", "..."],
+   "metal": ["GOLD","SILVER"],
+   "orderNoFormat": "TKM + YYYYMMDD + 4-digit seq, e.g. TKM202609170001"
+ },
+ "cookies": {"tk_session":"üye oturumu, 30 gün","tk_cart":"sepet, 30 gün","tk_theme":"light|dark, 1 yıl (also localStorage tk_theme)","tk_birikim":"Düzenli Birikim dönem ödemesi bağlama, 1 saat","tk_panel":"personel paneli, 8 saat"},
+ "routes_existing_auth_only (307 -> /giris?next=...)": ["/odeme","/hesap","/hesap/siparisler","/hesap/favoriler","/hesap/adresler","/hesap/birikim","/hesap/birikim/yeni?urun=<slug>&siklik=MONTHLY&donem=12","/hesap/alarmlar","/hesap/kimlik","/hesap/faturalar","/siparis/<orderNo>"],
+ "external": {"payment":"iyzico (CSP: frame-src & form-action https://*.iyzipay.com https://*.iyzico.com)","cdn":"Cloudflare (email obfuscation script /cdn-cgi/scripts/.../email-decode.min.js)","analytics":"none","maps":"none","whatsapp":"https://wa.me/905000000000","sms/email providers":"unnamed (KVKK: 'SMS ve e-posta servis sağlayıcıları', e-fatura/e-arşiv entegratörü)"}
+}

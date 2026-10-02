@@ -1,0 +1,402 @@
+{
+ "categories": [
+  {
+   "slug": "gram-kulce-altin",
+   "name": "Gram Külçe Altın",
+   "desc": "1 gramdan 12,5 kilograma sertifikalı, LBMA standartlarında külçe altın.",
+   "parent": null,
+   "order": 1,
+   "title": "Gram Külçe Altın Fiyatları | Tempo Altın",
+   "metaDescription": "1 gramdan 12,5 kilograma sertifikalı, LBMA standartlarında külçe altın.",
+   "productCount": 23,
+   "products": [
+    "tempo-1-gr-kulce-altin-995-0",
+    "tempo-2-5-gr-kulce-altin-995-0",
+    "tempo-5-gr-kulce-altin-995-0",
+    "tempo-10-gr-kulce-altin-995-0",
+    "tempo-20-gr-kulce-altin-995-0",
+    "tempo-50-gr-kulce-altin-995-0",
+    "tempo-100-gr-kulce-altin-995-0",
+    "tempo-250-gr-kulce-altin-995-0",
+    "tempo-500-gr-kulce-altin-995-0",
+    "tempo-1-kg-kulce-altin-995-0",
+    "tempo-10-gr-parcali-kulce-altin-995-0",
+    "tempo-1-gr-kulce-altin-999-9",
+    "tempo-2-5-gr-kulce-altin-999-9",
+    "tempo-5-gr-kulce-altin-999-9",
+    "tempo-10-gr-kulce-altin-999-9",
+    "tempo-20-gr-kulce-altin-999-9",
+    "tempo-50-gr-kulce-altin-999-9",
+    "tempo-100-gr-kulce-altin-999-9",
+    "tempo-250-gr-kulce-altin-999-9",
+    "tempo-500-gr-kulce-altin-999-9",
+    "tempo-1-kg-kulce-altin-999-9",
+    "tempo-10-gr-parcali-kulce-altin-999-9",
+    "tempo-12-5-kg-altin-large-bar"
+   ],
+   "children": [
+    "995-kulce-altin",
+    "9999-kulce-altin"
+   ]
+  },
+  {
+   "slug": "995-kulce-altin",
+   "name": "995.0 Külçe Altın",
+   "parent": "gram-kulce-altin",
+   "order": 1,
+   "title": "995.0 Külçe Altın Fiyatları | Tempo Altın",
+   "metaDescription": "995,0 milyem 24 ayar külçe altın; 1 gramdan 1 kilograma sertifikalı, seri numaralı.",
+   "productCount": 11,
+   "products": [
+    "tempo-1-gr-kulce-altin-995-0",
+    "tempo-2-5-gr-kulce-altin-995-0",
+    "tempo-5-gr-kulce-altin-995-0",
+    "tempo-10-gr-kulce-altin-995-0",
+    "tempo-20-gr-kulce-altin-995-0",
+    "tempo-50-gr-kulce-altin-995-0",
+    "tempo-100-gr-kulce-altin-995-0",
+    "tempo-250-gr-kulce-altin-995-0",
+    "tempo-500-gr-kulce-altin-995-0",
+    "tempo-1-kg-kulce-altin-995-0",
+    "tempo-10-gr-parcali-kulce-altin-995-0"
+   ]
+  },
+  {
+   "slug": "9999-kulce-altin",
+   "name": "999.9 Külçe Altın",
+   "parent": "gram-kulce-altin",
+   "order": 2,
+   "title": "999.9 Külçe Altın Fiyatları | Tempo Altın",
+   "metaDescription": "999,9 milyem 24 ayar has külçe altın; 1 gramdan 12,5 kilograma sertifikalı, seri numaralı.",
+   "productCount": 12,
+   "products": [
+    "tempo-1-gr-kulce-altin-999-9",
+    "tempo-2-5-gr-kulce-altin-999-9",
+    "tempo-5-gr-kulce-altin-999-9",
+    "tempo-10-gr-kulce-altin-999-9",
+    "tempo-20-gr-kulce-altin-999-9",
+    "tempo-50-gr-kulce-altin-999-9",
+    "tempo-100-gr-kulce-altin-999-9",
+    "tempo-250-gr-kulce-altin-999-9",
+    "tempo-500-gr-kulce-altin-999-9",
+    "tempo-1-kg-kulce-altin-999-9",
+    "tempo-10-gr-parcali-kulce-altin-999-9",
+    "tempo-12-5-kg-altin-large-bar"
+   ]
+  },
+  {
+   "slug": "gram-kulce-gumus",
+   "name": "Gram Külçe Gümüş",
+   "desc": "50 gramdan 15 kilograma 999.0 saflıkta külçe gümüş.",
+   "parent": null,
+   "order": 2,
+   "title": "Gram Külçe Gümüş Fiyatları | Tempo Altın",
+   "metaDescription": "50 gramdan 15 kilograma 999.0 saflıkta külçe gümüş.",
+   "productCount": 9,
+   "products": [
+    "tempo-50-gr-999-0-gumus-kulce",
+    "tempo-100-gr-999-0-gumus-kulce",
+    "tempo-250-gr-999-0-gumus-kulce",
+    "tempo-500-gr-999-0-gumus-kulce",
+    "tempo-1-kg-999-0-gumus-kulce",
+    "tempo-5-kg-999-0-gumus-kulce",
+    "tempo-15-kg-999-0-gumus-kulce",
+    "tempo-10-ons-999-0-gumus-kulce",
+    "tempo-100-ons-999-0-gumus-kulce"
+   ],
+   "children": []
+  },
+  {
+   "slug": "ziynet-altin",
+   "name": "Ziynet Altın",
+   "desc": "Darphane basımı çeyrek, yarım, tam, Reşat ve Ata altınlar.",
+   "parent": null,
+   "order": 3,
+   "title": "Ziynet Altın Fiyatları | Tempo Altın",
+   "metaDescription": "Darphane basımı çeyrek, yarım, tam, Reşat ve Ata altınlar.",
+   "productCount": 12,
+   "products": [
+    "ceyrek-altin-yeni-tarihli",
+    "yarim-altin-yeni-tarihli",
+    "tam-altin-yeni-tarihli",
+    "ziynet-2-5-luk-altin-yeni-tarihli",
+    "ziynet-5-lik-altin-yeni-tarihli",
+    "resat-lira-altin-darphane-basimi",
+    "resat-lira-altin-kulplu-darphane-basimi",
+    "resat-5-lik-altin-darphane-basimi",
+    "resat-5-lik-altin-darphane-basimi-kulplu",
+    "ata-lira-ceyrek-altin-102-yil-yeni-tarihli",
+    "ata-lira-yarim-altin-102-yil-yeni-tarihli",
+    "ata-lira-altin-102-yil-yeni-tarihli"
+   ],
+   "children": [
+    "ceyrek-yarim-tam",
+    "resat-altin",
+    "ata-altin"
+   ]
+  },
+  {
+   "slug": "ceyrek-yarim-tam",
+   "name": "Çeyrek / Yarım / Tam",
+   "parent": "ziynet-altin",
+   "order": 1,
+   "title": "Çeyrek / Yarım / Tam Fiyatları | Tempo Altın",
+   "metaDescription": "Darphane basımı çeyrek, yarım ve tam altın; yeni ve eski tarihli seçenekler.",
+   "productCount": 5,
+   "products": [
+    "ceyrek-altin-yeni-tarihli",
+    "yarim-altin-yeni-tarihli",
+    "tam-altin-yeni-tarihli",
+    "ziynet-2-5-luk-altin-yeni-tarihli",
+    "ziynet-5-lik-altin-yeni-tarihli"
+   ]
+  },
+  {
+   "slug": "resat-altin",
+   "name": "Reşat Altın",
+   "parent": "ziynet-altin",
+   "order": 2,
+   "title": "Reşat Altın Fiyatları | Tempo Altın",
+   "metaDescription": "Reşat altın: koleksiyon ve ziynet için Darphane basımı çeyrek, yarım, tam ve gremse.",
+   "productCount": 4,
+   "products": [
+    "resat-lira-altin-darphane-basimi",
+    "resat-lira-altin-kulplu-darphane-basimi",
+    "resat-5-lik-altin-darphane-basimi",
+    "resat-5-lik-altin-darphane-basimi-kulplu"
+   ]
+  },
+  {
+   "slug": "ata-altin",
+   "name": "Ata Altın",
+   "parent": "ziynet-altin",
+   "order": 3,
+   "title": "Ata Altın Fiyatları | Tempo Altın",
+   "metaDescription": "Ata altın: Atatürk portreli Darphane basımı çeyrek, yarım ve tam ziynet altını.",
+   "productCount": 3,
+   "products": [
+    "ata-lira-ceyrek-altin-102-yil-yeni-tarihli",
+    "ata-lira-yarim-altin-102-yil-yeni-tarihli",
+    "ata-lira-altin-102-yil-yeni-tarihli"
+   ]
+  },
+  {
+   "slug": "hesaba-altin-havale",
+   "name": "Hesaba Altın Havale",
+   "desc": "Fiziki teslimat olmadan, banka altın hesabınıza gram altın transferi.",
+   "parent": null,
+   "order": 4,
+   "title": "Hesaba Altın Havale Fiyatları | Tempo Altın",
+   "metaDescription": "Fiziki teslimat olmadan, banka altın hesabınıza gram altın transferi.",
+   "productCount": 1,
+   "products": [
+    "hesaba-altin-havale-1-gr"
+   ],
+   "children": []
+  },
+  {
+   "slug": "taki",
+   "name": "Takı",
+   "desc": "22 ayar bilezikler; gram fiyatı ve işçiliği şeffaf.",
+   "parent": null,
+   "order": 5,
+   "title": "Takı Fiyatları | Tempo Altın",
+   "metaDescription": "22 ayar bilezikler; gram fiyatı ve işçiliği şeffaf.",
+   "productCount": 42,
+   "products": [
+    "tempo-22-ayar-dokulu-bilezik-6-gr",
+    "tempo-22-ayar-dokulu-bilezik-7-gr",
+    "tempo-22-ayar-dokulu-bilezik-8-gr",
+    "tempo-22-ayar-parcali-kibrit-copu-bilezik-8-gr",
+    "tempo-22-ayar-parcali-kibrit-copu-bilezik-9-gr",
+    "tempo-22-ayar-parcali-kibrit-copu-bilezik-10-gr",
+    "tempo-22-ayar-sira-desen-bilezik-8-gr",
+    "tempo-22-ayar-sira-desen-bilezik-10-gr",
+    "tempo-22-ayar-sira-desen-bilezik-11-gr",
+    "tempo-22-ayar-badem-bilezik-7-gr",
+    "tempo-22-ayar-badem-bilezik-8-gr",
+    "tempo-22-ayar-badem-bilezik-10-gr",
+    "tempo-22-ayar-simli-bilezik-6-gr",
+    "tempo-22-ayar-simli-bilezik-7-gr",
+    "tempo-22-ayar-simli-bilezik-8-gr",
+    "tempo-22-ayar-balik-sirti-bilezik-10-gr",
+    "tempo-22-ayar-balik-sirti-bilezik-11-gr",
+    "tempo-22-ayar-balik-sirti-bilezik-12-gr",
+    "tempo-22-ayar-italyan-bilezik-10-gr",
+    "tempo-22-ayar-italyan-bilezik-12-gr",
+    "tempo-22-ayar-italyan-bilezik-15-gr",
+    "tempo-22-ayar-zikzak-ajda-bilezik-10-gr",
+    "tempo-22-ayar-zikzak-ajda-bilezik-12-gr",
+    "tempo-22-ayar-zikzak-ajda-bilezik-13-gr",
+    "tempo-22-ayar-ajda-bilezik-10-gr",
+    "tempo-22-ayar-ajda-bilezik-11-gr",
+    "tempo-22-ayar-ajda-bilezik-12-gr",
+    "tempo-22-ayar-kibrit-copu-bilezik-10-gr",
+    "tempo-22-ayar-kibrit-copu-bilezik-11-gr",
+    "tempo-22-ayar-kibrit-copu-bilezik-12-gr",
+    "tempo-22-ayar-ince-cizgili-bilezik-10-gr",
+    "tempo-22-ayar-ince-cizgili-bilezik-11-gr",
+    "tempo-22-ayar-ince-cizgili-bilezik-12-gr",
+    "tempo-22-ayar-burma-bilezik-10-gr",
+    "tempo-22-ayar-burma-bilezik-12-gr",
+    "tempo-22-ayar-burma-bilezik-15-gr",
+    "tempo-22-ayar-2-li-burma-bilezik-10-gr",
+    "tempo-22-ayar-2-li-burma-bilezik-12-gr",
+    "tempo-22-ayar-2-li-burma-bilezik-15-gr",
+    "tempo-22-ayar-3-lu-burma-bilezik-13-gr",
+    "tempo-22-ayar-3-lu-burma-bilezik-15-gr",
+    "tempo-22-ayar-3-lu-burma-bilezik-20-gr"
+   ],
+   "children": [
+    "burma-bilezik",
+    "kibrit-copu-bilezik",
+    "ajda-bilezik",
+    "model-bilezik"
+   ]
+  },
+  {
+   "slug": "burma-bilezik",
+   "name": "Burma Bilezik",
+   "parent": "taki",
+   "order": 1,
+   "title": "Burma Bilezik Fiyatları | Tempo Altın",
+   "metaDescription": "22 ayar burma bilezik; 2'li, 3'lü ve 4'lü burma modelleri, gram bazlı fiyat.",
+   "productCount": 9,
+   "products": [
+    "tempo-22-ayar-burma-bilezik-10-gr",
+    "tempo-22-ayar-burma-bilezik-12-gr",
+    "tempo-22-ayar-burma-bilezik-15-gr",
+    "tempo-22-ayar-2-li-burma-bilezik-10-gr",
+    "tempo-22-ayar-2-li-burma-bilezik-12-gr",
+    "tempo-22-ayar-2-li-burma-bilezik-15-gr",
+    "tempo-22-ayar-3-lu-burma-bilezik-13-gr",
+    "tempo-22-ayar-3-lu-burma-bilezik-15-gr",
+    "tempo-22-ayar-3-lu-burma-bilezik-20-gr"
+   ]
+  },
+  {
+   "slug": "kibrit-copu-bilezik",
+   "name": "Kibrit Çöpü Bilezik",
+   "parent": "taki",
+   "order": 2,
+   "title": "Kibrit Çöpü Bilezik Fiyatları | Tempo Altın",
+   "metaDescription": "22 ayar kibrit çöpü bilezik; ince ve zarif, gram bazlı canlı fiyat.",
+   "productCount": 6,
+   "products": [
+    "tempo-22-ayar-parcali-kibrit-copu-bilezik-8-gr",
+    "tempo-22-ayar-parcali-kibrit-copu-bilezik-9-gr",
+    "tempo-22-ayar-parcali-kibrit-copu-bilezik-10-gr",
+    "tempo-22-ayar-kibrit-copu-bilezik-10-gr",
+    "tempo-22-ayar-kibrit-copu-bilezik-11-gr",
+    "tempo-22-ayar-kibrit-copu-bilezik-12-gr"
+   ]
+  },
+  {
+   "slug": "ajda-bilezik",
+   "name": "Ajda Bilezik",
+   "parent": "taki",
+   "order": 3,
+   "title": "Ajda Bilezik Fiyatları | Tempo Altın",
+   "metaDescription": "22 ayar Ajda bilezik; klasik model, işçilik dahil şeffaf fiyat.",
+   "productCount": 6,
+   "products": [
+    "tempo-22-ayar-zikzak-ajda-bilezik-10-gr",
+    "tempo-22-ayar-zikzak-ajda-bilezik-12-gr",
+    "tempo-22-ayar-zikzak-ajda-bilezik-13-gr",
+    "tempo-22-ayar-ajda-bilezik-10-gr",
+    "tempo-22-ayar-ajda-bilezik-11-gr",
+    "tempo-22-ayar-ajda-bilezik-12-gr"
+   ]
+  },
+  {
+   "slug": "model-bilezik",
+   "name": "Model Bilezik",
+   "parent": "taki",
+   "order": 4,
+   "title": "Model Bilezik Fiyatları | Tempo Altın",
+   "metaDescription": "22 ayar model bilezikler; farklı işçilik ve gramajlarda seçenekler.",
+   "productCount": 21,
+   "products": [
+    "tempo-22-ayar-dokulu-bilezik-6-gr",
+    "tempo-22-ayar-dokulu-bilezik-7-gr",
+    "tempo-22-ayar-dokulu-bilezik-8-gr",
+    "tempo-22-ayar-sira-desen-bilezik-8-gr",
+    "tempo-22-ayar-sira-desen-bilezik-10-gr",
+    "tempo-22-ayar-sira-desen-bilezik-11-gr",
+    "tempo-22-ayar-badem-bilezik-7-gr",
+    "tempo-22-ayar-badem-bilezik-8-gr",
+    "tempo-22-ayar-badem-bilezik-10-gr",
+    "tempo-22-ayar-simli-bilezik-6-gr",
+    "tempo-22-ayar-simli-bilezik-7-gr",
+    "tempo-22-ayar-simli-bilezik-8-gr",
+    "tempo-22-ayar-balik-sirti-bilezik-10-gr",
+    "tempo-22-ayar-balik-sirti-bilezik-11-gr",
+    "tempo-22-ayar-balik-sirti-bilezik-12-gr",
+    "tempo-22-ayar-italyan-bilezik-10-gr",
+    "tempo-22-ayar-italyan-bilezik-12-gr",
+    "tempo-22-ayar-italyan-bilezik-15-gr",
+    "tempo-22-ayar-ince-cizgili-bilezik-10-gr",
+    "tempo-22-ayar-ince-cizgili-bilezik-11-gr",
+    "tempo-22-ayar-ince-cizgili-bilezik-12-gr"
+   ]
+  }
+ ],
+ "headerNav": [
+  {
+   "href": "/kategori/hesaba-altin-havale",
+   "label": "Hesaba Havale"
+  },
+  {
+   "href": "/hesaptan-fiziki-altin",
+   "label": "Hesaptan Fizikiye"
+  },
+  {
+   "href": "/gel-al",
+   "label": "Gel Al"
+  },
+  {
+   "href": "/vadeli-altin",
+   "label": "Vadeli Altın"
+  },
+  {
+   "href": "/kampanyalar",
+   "label": "Kampanyalar"
+  },
+  {
+   "href": "/duzenli-birikim",
+   "label": "Düzenli Birikim"
+  }
+ ],
+ "sortOptions": [
+  {
+   "value": "",
+   "label": "Önerilen"
+  },
+  {
+   "value": "gram",
+   "label": "Grama göre"
+  },
+  {
+   "value": "fiyat-artan",
+   "label": "Fiyat: artan"
+  },
+  {
+   "value": "fiyat-azalan",
+   "label": "Fiyat: azalan"
+  }
+ ],
+ "sortParam": "sirala",
+ "filters": [
+  {
+   "param": "filtre",
+   "value": "kampanyali",
+   "label": "Kampanyalı"
+  },
+  {
+   "param": "filtre",
+   "value": "stokta",
+   "label": "Stokta"
+  }
+ ],
+ "pagination": null
+}

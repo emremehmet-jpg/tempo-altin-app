@@ -1,11 +1,11 @@
 // Service worker — yalnızca https veya localhost'ta çalışır (tarayıcı kuralı).
 // Telefondan 192.168.x.x ile bakarken devreye girmez; bu normaldir.
 // Görevi: uygulama kabuğunu önbelleğe alıp çevrimdışıyken de açılmasını sağlamak.
-// Kur verisi (/api/) hiçbir zaman önbelleğe alınmaz — her zaman ağdan gelir.
-const SURUM = "tempo-v11";
-const KABUK = ["/", "/index.html", "/app.css", "/app.js", "/altin.js", "/manifest.webmanifest",
+// Fiyat verisi (/api/) hiçbir zaman önbelleğe alınmaz — her zaman ağdan gelir.
+const SURUM = "tempo-altin-v2";
+const KABUK = ["/", "/index.html", "/app.css", "/app.js", "/altin.js", "/magaza.js", "/veri/katalog.json", "/manifest.webmanifest",
   "/ikon/ikon-192.png", "/ikon/apple-touch-icon.png", "/ikon/favicon.png",
-  "/marka/tempo-yazi.png", "/marka/tempo-o.png", "/marka/tempo-bant.png", "/marka/altin-bant.png"];
+  "/marka/altin-yazi.png", "/marka/altin-o.png", "/marka/altin-bant.png"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(SURUM).then((c) => c.addAll(KABUK)).then(() => self.skipWaiting()));

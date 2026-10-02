@@ -4,9 +4,9 @@ import { spawn } from "node:child_process";
 import fs from "node:fs";
 const [,, url, sn = "60", cikti = "ss.png", y4m] = process.argv;
 const B = "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser";
-const port = 9333;
+const port = Number(process.env.CDP_PORT || 9343);   // Döviz projesinin sürücüsü 9333; çakışmasın
 const args = ["--headless=new", "--disable-gpu", "--hide-scrollbars", `--remote-debugging-port=${port}`, "--window-size=800,900",
-  "--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream", `--user-data-dir=/tmp/tempo-brave-profil`, "about:blank"];
+  "--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream", `--user-data-dir=/tmp/tempo-altin-brave-profil`, "about:blank"];
 if (y4m) args.push(`--use-file-for-fake-video-capture=${y4m}`);
 const p = spawn(B, args, { stdio: "ignore" });
 const bekle = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -21,12 +21,20 @@ try {
   const sayfa = hedefler.find((t) => t.type === "page");
   ws = new WebSocket(sayfa.webSocketDebuggerUrl);
   await new Promise((r) => (ws.onopen = r));
-  ws.onmessage = (e) => { const m = JSON.parse(e.data); if (m.id && bekleyen.has(m.id)) { const b = bekleyen.get(m.id); bekleyen.delete(m.id); m.error ? b.rej(new Error(m.error.message)) : b.res(m.result); } };
+  // Konsol hataları da yazılsın (iframe içindekiler dahil)
+  const konsol = [];
+  ws.onmessage = (e) => {
+    const m = JSON.parse(e.data);
+    if (m.method === "Runtime.exceptionThrown") konsol.push("HATA " + (m.params.exceptionDetails.exception?.description || m.params.exceptionDetails.text).split("\n")[0] + " @" + (m.params.exceptionDetails.url || "").split("/").pop() + ":" + m.params.exceptionDetails.lineNumber);
+    if (m.method === "Runtime.consoleAPICalled" && ["error", "warning"].includes(m.params.type)) konsol.push("KONSOL " + m.params.args.map((a) => a.value ?? a.description).join(" "));
+    if (m.id && bekleyen.has(m.id)) { const b = bekleyen.get(m.id); bekleyen.delete(m.id); m.error ? b.rej(new Error(m.error.message)) : b.res(m.result); }
+  };
   await cagir("Page.enable"); await cagir("Runtime.enable");
   await cagir("Page.navigate", { url });
   await bekle(Number(sn) * 1000);
   const log = await cagir("Runtime.evaluate", { expression: "document.getElementById('log')?.textContent || ''", returnByValue: true });
   console.log(log.result.value);
+  if (konsol.length) console.log(konsol.join("\n"));
   const ss = await cagir("Page.captureScreenshot", { format: "png" });
   fs.writeFileSync(cikti, Buffer.from(ss.data, "base64"));
   console.log("görüntü:", cikti);
