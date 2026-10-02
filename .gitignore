@@ -1,0 +1,15 @@
+# Yerel sertifikalar — anahtarlar paylaşılmaz (uret.sh yeniden üretir)
+sertifika/*.key
+sertifika/*.crt
+sertifika/*.srl
+sertifika/server.ext
+
+# Geçici test sayfaları (yayına gitmesin)
+public/_test/
+
+# Python sanal ortamı (kanat-ayir.py için)
+venv/
+.venv/
+__pycache__/
+
+.DS_Store

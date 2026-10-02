@@ -1,0 +1,77 @@
+<!doctype html><meta charset="utf-8"><title>OCR A/B</title>
+<body style="margin:0;background:#fff">
+<pre id="log" style="position:fixed;top:0;left:0;background:#fff;font:12px monospace;margin:0;z-index:9"></pre>
+<canvas id="c1"></canvas><canvas id="c2"></canvas>
+<script>
+const P = new URLSearchParams(location.search), paket = P.get("paket") || "yeni";
+window.TEMPO_OCR = { esik: Number(P.get("esik") || 0.3), unclip: Number(P.get("unclip") || 1.5) };
+const log = (s) => { document.getElementById("log").textContent += s + "\n"; };
+// Sahne 1: kareli defter, el yazısı sayılar alt alta, TEMPO filigranı, altta antet
+function defter(c) {
+  c.width = 1000; c.height = 1400; const g = c.getContext("2d");
+  g.fillStyle = "#fbfbfb"; g.fillRect(0, 0, c.width, c.height);
+  g.strokeStyle = "#cfd6dd"; g.lineWidth = 1.2;
+  for (let x = 20; x < c.width; x += 28) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, c.height); g.stroke(); }
+  for (let y = 10; y < c.height; y += 28) { g.beginPath(); g.moveTo(0, y); g.lineTo(c.width, y); g.stroke(); }
+  g.fillStyle = "#d9d9d9"; g.font = "bold 230px Helvetica"; g.fillText("TEMPO", 90, 830);
+  g.fillStyle = "#333"; g.font = "88px 'Bradley Hand', 'Noteworthy', cursive";
+  g.fillText("32", 300, 300); g.fillText("44", 300, 420); g.fillText("55", 300, 540);
+  g.fillText("88", 420, 1030); g.fillText("92", 420, 1140);
+  g.fillStyle = "#666"; g.font = "26px Helvetica";
+  g.fillText("Bağlarbaşı Caddesi No: 12 / 3   Üsküdar / İSTANBUL", 260, 1330);
+  g.fillText("(0216) 553 12 34  ·  info@tempodoviz.com  ·  www.tempodoviz.com", 260, 1370);
+  g.fillText("Şube: 4   Kasa 7", 260, 1398); // kesik satır (kenara dayalı)
+}
+// Sahne 3: zor defter — sıkışık satırlar, hafif eğik, soluk mürekkep, bulanık
+function zor(c) {
+  c.width = 1000; c.height = 1400; const g = c.getContext("2d");
+  g.fillStyle = "#f4f4f2"; g.fillRect(0, 0, c.width, c.height);
+  g.save(); g.translate(500, 700); g.rotate(-0.05); g.translate(-500, -700);
+  g.strokeStyle = "#b9c3cc"; g.lineWidth = 1.4;
+  for (let x = -100; x < 1100; x += 26) { g.beginPath(); g.moveTo(x, -100); g.lineTo(x, 1500); g.stroke(); }
+  for (let y = -100; y < 1500; y += 26) { g.beginPath(); g.moveTo(-100, y); g.lineTo(1100, y); g.stroke(); }
+  g.fillStyle = "#d3d3d3"; g.font = "bold 230px Helvetica"; g.fillText("TEMPO", 90, 830);
+  g.filter = "blur(0.9px)";
+  g.fillStyle = "#4a5060"; g.font = "80px 'Bradley Hand', 'Noteworthy', cursive";
+  g.fillText("32", 300, 330); g.fillText("44", 300, 418); g.fillText("55", 300, 506);
+  g.fillText("88", 420, 1030); g.fillText("92", 420, 1118);
+  g.filter = "none";
+  g.fillStyle = "#777"; g.font = "24px Helvetica";
+  g.fillText("Bağlarbaşı Caddesi No: 12 / 3   Üsküdar / İSTANBUL", 260, 1330);
+  g.fillText("(0216) 553 12 34  ·  info@tempodoviz.com  ·  www.tempodoviz.com", 260, 1368);
+  g.fillText("Şube: 4   Kasa 7", 260, 1398);
+  g.restore();
+}
+// Sahne 2: basılı menü (bu da bozulmamalı)
+function menu(c) {
+  c.width = 1000; c.height = 900; const g = c.getContext("2d");
+  g.fillStyle = "#fff"; g.fillRect(0, 0, c.width, c.height);
+  g.fillStyle = "#222"; g.font = "bold 40px Georgia"; g.fillText("PASTA", 80, 100);
+  g.font = "34px Georgia";
+  const s = [["Carbonara", "18,50"], ["Bolognese", "16"], ["Pesto Genovese", "17,90"], ["Lasagne", "19.00"], ["Su 0,5 lt", "3"], ["Kahve", "4.20"]];
+  s.forEach(([a, f], i) => { const y = 180 + i * 90; g.fillText(a, 80, y); g.fillText(f + " €", 760, y); });
+  g.font = "italic 24px Georgia"; g.fillStyle = "#777"; g.fillText("Fiyatlara %10 servis dahildir · 2024", 80, 780);
+  g.fillText("Açık: 12:30 – 23:00 · Tel 0212 555 44 33", 80, 830);
+}
+async function oku(L, m, c) {
+  const t = performance.now();
+  const s = await L.oku(m, c);
+  log(`  süre ${Math.round(performance.now() - t)} ms, ${s.length} satır`);
+  for (const l of s) log(`  "${l.metin}" (${l.guven}) x${Math.round(l.kutu.x0)}-${Math.round(l.kutu.x1)} y${Math.round(l.kutu.y0)}-${Math.round(l.kutu.y1)}`);
+  const b = L.sayilariBul(s, c.height, c.width);
+  log("  SAYILAR: " + b.map((x) => `${x.metin}→${x.tutar}`).join("  "));
+}
+(async () => {
+  await document.fonts.load("88px 'Bradley Hand'").catch(() => {});
+  const f = document.createElement("iframe"); f.src = "/"; f.style.cssText = "width:390px;height:700px;position:absolute;left:1000px";
+  document.body.appendChild(f);
+  await new Promise((r) => (f.onload = r));
+  const L = f.contentWindow.TempoLens; if (!L) throw new Error("TempoLens yok");
+  const m = await L.motorHazirla();
+  log(`paket: ${paket}`);
+  const c1 = f.contentDocument.createElement("canvas");
+  const sahneler = { defter, zor, menu };
+  for (const ad of (P.get("sahne") || "defter,zor,menu").split(",")) { sahneler[ad](c1); document.body.appendChild(c1); log(ad.toUpperCase()); if (P.get("dataurl")) { log("DATAURL " + c1.toDataURL("image/png")); continue; } await oku(L, m, c1); }
+  log("BİTTİ");
+})().catch((e) => log("HATA " + e.message + "\n" + e.stack));
+</script>

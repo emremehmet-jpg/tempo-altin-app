@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8"><title>Canlı test</title>
+<body style="margin:0;background:#222">
+<pre id="log" style="position:absolute;left:400px;top:0;color:#fff;font:12px monospace;margin:0;width:380px;white-space:pre-wrap"></pre>
+<iframe id="f" src="/" allow="camera" style="width:390px;height:844px;border:0"></iframe>
+<script>
+const log = (s) => { document.getElementById("log").textContent += s + "\n"; };
+const f = document.getElementById("f"), bekle = (ms) => new Promise((r) => setTimeout(r, ms));
+f.onload = async () => {
+  const d = f.contentDocument;
+  d.querySelector("#lens-ac").click();
+  for (let i = 0; i < 40; i++) {
+    await bekle(1000);
+    const durum = d.querySelector("#kamera-durum")?.textContent;
+    const roz = [...d.querySelectorAll("#kamera-etiketler .lens-etiket")].map((e) => e.textContent);
+    log(`${i}s ${durum} | ${roz.join(" · ")}`);
+  }
+  log("BİTTİ");
+};
+</script>
